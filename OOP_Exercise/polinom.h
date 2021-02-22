@@ -1,7 +1,6 @@
 #ifndef POLINOM_H
 #define POLINOM_H
 #include<iostream>
-#include<cmath>
 #include"Number.h"
 
 enum EPrintMode{

@@ -1,4 +1,4 @@
 #ifndef NUMBER_H
 #define NUMBER_H
-typedef double number;
+typedef int number;
 #endif // NUMBER_H
