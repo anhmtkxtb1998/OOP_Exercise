@@ -7,7 +7,7 @@ class TApplication
 public:
     TApplication();
     int exec();
-    private:
+private:
     int menu();
 };
 

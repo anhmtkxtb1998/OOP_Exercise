@@ -1,78 +1,95 @@
 #include "application.h"
-#include<iostream>
+#include <iostream>
 #include "polinom.h"
-using namespace std;
+
 TApplication::TApplication()
 {
 
 }
-int TApplication::exec(){
+int TApplication::exec()
+{
     int ch;
     number a = 0,b =1,c=1;
-    while(true){
-    ch = menu();
-    switch(ch){
-    case 1:
-        do
-        {cout<< "a = " ; cin >>a;
-        cout <<"b = ";cin >>b;
-        cout <<"c = ";cin >>c;
-        if( a == 0)
-            cout <<"Value of a must other 0!Re-enter coefficients!" << endl;
-        }while(a == 0);
-        break;
-    case 2:
+    while(true)
     {
-        Polinom p (a,b,c);
-        number x;
-        cout <<"x = " ; cin >>x;
-        cout <<"p(x) = " << p.value(x) << endl;
-    }
-        break;
-    case 3:
-    {
-        Polinom p(a,b,c);
-        number* roots = p.roots();
-        if(roots == NULL)
-            cout << "The equation has no solution!" << endl;
-        else
+        ch = menu();
+        switch(ch)
         {
-         if(roots[0] == roots[1])
-             cout << "The equation have double solution: x1 = x2 = " << roots[0] << endl;
-         else
-             cout << "The equation have 2 solutions: x1 = " << roots[0] <<", x2 = " << roots[1] << endl;
+        case 1:
+            do
+            {
+                std::cout<< "a = ";
+                std::cin >>a;
+                std::cout <<"b = ";
+                std::cin >>b;
+                std::cout <<"c = ";
+                std::cin >>c;
+
+                if (a == 0)
+                    std::cout << "Value of 'a' cant be 0! Reenter coefficients!" << std::endl;
+            } while(a == 0);
+            break;
+
+        case 2:
+        {
+            Polinom p (a,b,c);
+            number x;
+            std::cout <<"x = ";
+            std::cin >>x;
+            std::cout <<"p(x) = " << p.value(x) << std::endl;
+        }
+            break;
+
+        case 3:
+        {
+            Polinom p(a,b,c);
+            number* roots = p.roots();
+            if (roots == NULL)
+                std::cout << "The equation has no solutions!" << std::endl;
+            else
+            {
+                if (roots[0] == roots[1])
+                    std::cout << "The equation have double solution: x1 = x2 = " << roots[0] << std::endl;
+                else
+                    std::cout << "The equation have 2 solutions: x1 = " << roots[0] <<", x2 = " << roots[1] << std::endl;
+            }
+        }
+            break;
+
+        case 4:
+        {
+            Polinom p(a,b,c);
+            p.SetPrintMode(EPrintModeClassic);
+            std::cout << p << std::endl;
+        }
+            break;
+
+        case 5:
+        {
+            Polinom p(a,b,c);
+            p.SetPrintMode(EPrintModeCanonic);
+            std::cout << p << std::endl;
+        }
+            break;
+
+        case 0:
+            return 0;
+
+        default:
+            std::cout << "No command for this input. Enter number from 0 to 5" << std::endl;
+            break;
         }
     }
-        break;
-    case 4:
-    {
-        Polinom p(a,b,c);
-        p.SetPrintMode(EPrintModeClassic);
-        cout << p << endl;
-    }
-        break;
-    case 5:
-    {
-        Polinom p(a,b,c);
-        p.SetPrintMode(EPrintModeCanonic);
-        cout << p << endl;
-    }
-        break;
-    case 0:
-        return 0;
-    default:
-        break;
-    }
-    }
 }
+
 int TApplication::menu(){
     int ch;
-    cout <<"0 - exit" << endl;
-    cout <<"1 - coefficients" << endl;
-    cout <<"2 - value" << endl;
-    cout <<"3 - Roots" <<endl;
-    cout <<"4 - print(classic)" << endl;
-    cout <<"5 - print(canonic)" << endl  << "> ";
-    cin >>ch;
+    std::cout <<"0 - exit" << std::endl;
+    std::cout <<"1 - coefficients" << std::endl;
+    std::cout <<"2 - value" << std::endl;
+    std::cout <<"3 - roots" << std::endl;
+    std::cout <<"4 - print(classic)" << std::endl;
+    std::cout <<"5 - print(canonic)" << std::endl  << "> ";
+    std::cin >>ch;
     return ch;
 }

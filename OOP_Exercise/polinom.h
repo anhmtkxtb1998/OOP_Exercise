@@ -1,9 +1,8 @@
 #ifndef POLINOM_H
 #define POLINOM_H
 #include<iostream>
-#include<cmath>
 #include"Number.h"
-using namespace std;
+
 enum EPrintMode{
     EPrintModeClassic,
     EPrintModeCanonic,
@@ -17,7 +16,7 @@ public:
     void SetPrintMode(EPrintMode);
     number value(number);
     number * roots();
-    friend ostream& operator <<(ostream&,Polinom&);
+    friend std::ostream& operator <<(std::ostream&,Polinom&);
 };
 
 #endif // POLINOM_H
