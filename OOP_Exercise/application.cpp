@@ -6,10 +6,11 @@ TApplication::TApplication()
 {
 
 }
+
 int TApplication::exec()
 {
     int ch;
-    number a = 0,b =1,c=1;
+    number a = 1,b =1,c=1;
     while(true)
     {
         ch = menu();
@@ -49,9 +50,9 @@ int TApplication::exec()
             else
             {
                 if (roots[0] == roots[1])
-                    std::cout << "The equation have double solution: x1 = x2 = " << roots[0] << std::endl;
+                    std::cout << "The equation has one solution: x1 = " << roots[0] << std::endl;
                 else
-                    std::cout << "The equation have 2 solutions: x1 = " << roots[0] <<", x2 = " << roots[1] << std::endl;
+                    std::cout << "The equation has 2 solutions: x1 = " << roots[0] <<", x2 = " << roots[1] << std::endl;
             }
         }
             break;
@@ -82,14 +83,15 @@ int TApplication::exec()
     }
 }
 
-int TApplication::menu(){
+int TApplication::menu()
+{
     int ch;
-    std::cout <<"0 - exit" << std::endl;
-    std::cout <<"1 - coefficients" << std::endl;
-    std::cout <<"2 - value" << std::endl;
-    std::cout <<"3 - roots" << std::endl;
-    std::cout <<"4 - print(classic)" << std::endl;
-    std::cout <<"5 - print(canonic)" << std::endl  << "> ";
+    std::cout << "0 - exit" << std::endl;
+    std::cout << "1 - coefficients" << std::endl;
+    std::cout << "2 - value" << std::endl;
+    std::cout << "3 - roots" << std::endl;
+    std::cout << "4 - print(classic)" << std::endl;
+    std::cout << "5 - print(canonic)" << std::endl << "> ";
     std::cin >>ch;
     return ch;
 }
