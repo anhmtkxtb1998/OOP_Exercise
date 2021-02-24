@@ -9,6 +9,6 @@ SOURCES += \
         polinom.cpp
 
 HEADERS += \
-    Number.h \
     application.h \
+    number.h \
     polinom.h
