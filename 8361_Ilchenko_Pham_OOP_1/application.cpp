@@ -1,6 +1,7 @@
 #include "application.h"
 #include <iostream>
 #include "polinom.h"
+#include "number.h"
 
 TApplication::TApplication()
 {
@@ -54,6 +55,7 @@ int TApplication::exec()
                 else
                     std::cout << "The equation has two solutions: x1 = " << roots[0] << ", x2 = " << roots[1] << std::endl;
             }
+            delete [] roots;
         }
             break;
 
