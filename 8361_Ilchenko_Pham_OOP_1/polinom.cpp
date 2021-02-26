@@ -31,22 +31,17 @@ number * Polinom::roots()
         {
             return xroots;
         }
-        else
+        if (value(xroots[0]) == 0)
         {
-            if (value(xroots[0]) == 0)
-            {
-                xroots[1] = xroots[0];
-                return xroots;
-            }
-            if (value(xroots[1]) == 0)
-            {
-                xroots[0] = xroots[1];
-                return xroots;
-            }
-            delete [] xroots;
+            xroots[1] = xroots[0];
+            return xroots;
         }
-        xroots = NULL;
-        return xroots;
+        if (value(xroots[1]) == 0)
+        {
+            xroots[0] = xroots[1];
+            return xroots;
+        }
+        delete [] xroots;
     }
     return NULL;
 }
