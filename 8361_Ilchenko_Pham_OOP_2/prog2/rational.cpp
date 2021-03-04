@@ -1,4 +1,10 @@
 #include "rational.h"
+#include <cmath>
+
+TRational::TRational()
+{
+
+}
 
 TRational::TRational(int a, unsigned b = 1)
 {
@@ -12,7 +18,7 @@ TRational::TRational(const int& a)
     this->b = 1;
 }
 
-std::ostream& operator <<(std::ostream& os, TRational& r)
+std::ostream& operator <<(std::ostream& os, TRational r)
 {
     os << "(" << r.a << "/" << r.b << ")";
     return os;
@@ -39,7 +45,76 @@ std::istream &operator>>(std::istream &is, char const *pat)
 std::istream& operator >>(std::istream& is, TRational& r)
 {
     is >> r.a >> "/" >> r.b;
+    while (r.b == 0)
+    {
+        std::cout << "Denominator cant be 0. Reenter";
+        is >> r.a >> "/" >> r.b;
+    }
     return is;
 }
 
+bool TRational::operator ==(const TRational & p) const
+{
+    if (this->a == p.a && this->b == p.b)
+        return true;
+    else
+        return false;
+}
 
+bool TRational::operator >=(const TRational & p) const
+{
+    if (this->a * p.b >= p.a * this->b)
+        return true;
+    else
+        return false;
+}
+
+bool TRational::operator <(const TRational & p) const
+{
+    if (this->a * p.b < p.a * this->b)
+        return true;
+    else
+        return false;
+}
+
+TRational operator *(const TRational &r, const TRational & p)
+{
+    TRational res(r.a * p.a, r.b * p.b);
+    return res;
+}
+
+TRational TRational::operator /(const TRational & p) const
+{
+    TRational res(this->a * p.b, this->b * p.a);
+    return res;
+}
+
+TRational TRational::operator +(const TRational & p) const
+{
+    TRational res(this->a * p.b + p.a * this->b, this->b * p.b);
+    return res;
+}
+
+TRational TRational::operator -(const TRational & p) const
+{
+    TRational res(this->a * p.b - p.a * this->b, this->b * p.b);
+    return res;
+}
+
+TRational TRational::operator -() const
+{
+    TRational res(-this->a, this->b);
+    return res;
+}
+
+TRational sqrt(TRational r)
+{
+    TRational res(sqrt(r.a), sqrt(r.b));
+    return res;
+}
+
+TRational std::abs(TRational r)
+{
+    TRational res(std::abs(r.a), r.b);
+    return res;
+}

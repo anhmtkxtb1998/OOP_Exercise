@@ -6,9 +6,9 @@ class TApplication
 {
 public:
     TApplication();
-//    int exec();
-//private:
-//    int menu();
+    int exec();
+private:
+    int menu();
 };
 
 #endif // APPLICATION_H
