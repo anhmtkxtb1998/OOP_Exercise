@@ -6,16 +6,37 @@ TRational::TRational()
 
 }
 
-TRational::TRational(int a, unsigned b = 1)
+TRational::TRational(int a, int b = 1)
 {
     this->a = a;
     this->b = b;
+    this->compact();
 }
 
 TRational::TRational(const int& a)
 {
     this->a = a;
     this->b = 1;
+}
+
+int TRational::gcd(int a, int b)
+{
+    if (b == 0)
+        return a;
+    else
+        return gcd(b, a % b);
+}
+
+void TRational::compact()
+{
+    int g = gcd(a,b);
+    a = a/g;
+    b = b/g;
+    if (b < 0)
+    {
+        a *= -1;
+        b *= -1;
+    }
 }
 
 std::ostream& operator <<(std::ostream& os, TRational r)
@@ -50,6 +71,7 @@ std::istream& operator >>(std::istream& is, TRational& r)
         std::cout << "Denominator cant be 0. Reenter";
         is >> r.a >> "/" >> r.b;
     }
+    r.compact();
     return is;
 }
 

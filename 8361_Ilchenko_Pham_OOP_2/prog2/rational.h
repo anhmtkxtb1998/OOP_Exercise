@@ -11,12 +11,13 @@ namespace std
 
 class TRational
 {
-    int a;
-    unsigned b;
+    int a, b;
 public:
     TRational();
-    TRational(int, unsigned);
+    TRational(int, int);
     TRational(const int&);
+    int gcd(int, int);
+    void compact();
     bool operator ==(const TRational &) const;
     bool operator >=(const TRational &) const;
     bool operator <(const TRational &) const;
