@@ -11,9 +11,7 @@ TApplication::TApplication()
 int TApplication::exec()
 {
     int ch;
-    number a = 1;
-    number b = 2;
-    number c= 1;
+    number a = 1, b =2, c=1;
     while(true)
     {
         ch = menu();

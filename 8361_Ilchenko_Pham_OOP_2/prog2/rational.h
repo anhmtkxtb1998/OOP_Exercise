@@ -30,7 +30,7 @@ public:
     friend TRational std::abs(TRational);
     friend std::ostream& operator <<(std::ostream&, TRational);
     friend std::istream& operator >>(std::istream&, TRational&);
-    friend std::istream& operator >>(std::istream &, char const *);
+//    friend std::istream& operator >>(std::istream &, char const *);
 };
 
 

@@ -51,15 +51,12 @@ std::istream &operator>>(std::istream &is, char const *pat)
     while (isspace(static_cast<unsigned char>(is.peek())))
         is.get(ch);
 
-    while (*pat && is && *pat == is.peek() && is.get(ch)) {
+    while (*pat && is && *pat == is.peek() && is.get(ch))
+    {
         ++pat;
     }
-
-    // if we didn't reach the end of the pattern, matching failed (mismatch, premature EOF, etc.)
-    if (*pat) {
+    if (*pat)
         is.setstate(std::ios::failbit);
-    }
-
     return is;
 }
 
@@ -68,7 +65,7 @@ std::istream& operator >>(std::istream& is, TRational& r)
     is >> r.a >> "/" >> r.b;
     while (r.b == 0)
     {
-        std::cout << "Denominator cant be 0. Reenter";
+        std::cout << "Denominator cant be 0. Reenter: ";
         is >> r.a >> "/" >> r.b;
     }
     r.compact();
