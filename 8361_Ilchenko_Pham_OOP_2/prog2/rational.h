@@ -12,12 +12,12 @@ namespace std
 class TRational
 {
     int a, b;
+    int gcd(int, int);
+    void compact();
 public:
     TRational();
     TRational(int, int);
     TRational(const int&);
-    int gcd(int, int);
-    void compact();
     bool operator ==(const TRational &) const;
     bool operator >=(const TRational &) const;
     bool operator <(const TRational &) const;
@@ -30,7 +30,7 @@ public:
     friend TRational std::abs(TRational);
     friend std::ostream& operator <<(std::ostream&, TRational);
     friend std::istream& operator >>(std::istream&, TRational&);
-//    friend std::istream& operator >>(std::istream &, char const *);
+    friend std::istream& operator >>(std::istream &, char const *);
 };
 
 
