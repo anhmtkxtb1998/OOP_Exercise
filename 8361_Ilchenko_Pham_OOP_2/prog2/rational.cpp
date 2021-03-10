@@ -45,28 +45,18 @@ std::ostream& operator <<(std::ostream& os, TRational r)
     return os;
 }
 
-std::istream &operator>>(std::istream &is, char const *pat)
-{
-    char ch;
-    while (isspace(static_cast<unsigned char>(is.peek())))
-        is.get(ch);
-
-    while (*pat && is && *pat == is.peek() && is.get(ch))
-    {
-        ++pat;
-    }
-    if (*pat)
-        is.setstate(std::ios::failbit);
-    return is;
-}
-
 std::istream& operator >>(std::istream& is, TRational& r)
 {
-    is >> r.a >> "/" >> r.b;
+    char div;
+    is >> r.a >> div >> r.b;
+    if (div != '/')
+        std::cout << "Enter in format a/b: ";
     while (r.b == 0)
     {
         std::cout << "Denominator cant be 0. Reenter: ";
-        is >> r.a >> "/" >> r.b;
+        is >> r.a >> div >> r.b;
+        if (div != '/')
+            std::cout << "Enter in format a/b: ";
     }
     r.compact();
     return is;
