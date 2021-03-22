@@ -49,14 +49,20 @@ std::istream& operator >>(std::istream& is, TRational& r)
 {
     char div;
     is >> r.a >> div >> r.b;
-    if (div != '/')
+    while (div != '/')
+    {
         std::cout << "Enter in format a/b: ";
+        is >> r.a >> div >> r.b;
+    }
     while (r.b == 0)
     {
         std::cout << "Denominator cant be 0. Reenter: ";
         is >> r.a >> div >> r.b;
-        if (div != '/')
+        while (div != '/')
+        {
             std::cout << "Enter in format a/b: ";
+            is >> r.a >> div >> r.b;
+        }
     }
     r.compact();
     return is;
