@@ -1,16 +1,17 @@
 #ifndef TINTERFACE_H
 #define TINTERFACE_H
 
-#include <QMainWindow>
-#include<QLabel>
-#include<QLineEdit>
-#include<QPushButton>
-#include<QString>
-#include "polinom.h"
+#include <QWidget>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QString>
+#include <QValidator>
 
-class TInterface : public QMainWindow
+class TInterface : public QWidget
 {
     Q_OBJECT
+
     QLabel * name_a, * delimeter_a;
     QLineEdit * numerator_a, * denominator_a;
 
@@ -33,9 +34,9 @@ public:
     TInterface(QWidget *parent = nullptr);
     ~TInterface();
 public slots:
-    void Value();
-    void Roots();
-    void Print_classic();
-    void Print_canonic();
+    void value();
+    void roots();
+    void print_classic();
+    void print_canonic();
 };
 #endif // TINTERFACE_H

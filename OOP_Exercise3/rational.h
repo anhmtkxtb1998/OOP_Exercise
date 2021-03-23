@@ -1,7 +1,6 @@
 #ifndef TRATIONAL_H
 #define TRATIONAL_H
-#include <iostream>
-#include<QString>
+#include <QString>
 class TRational;
 
 namespace std

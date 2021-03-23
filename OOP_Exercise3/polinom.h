@@ -1,6 +1,5 @@
 #ifndef POLINOM_H
 #define POLINOM_H
-#include <iostream>
 #include<QString>
 #include "number.h"
 
