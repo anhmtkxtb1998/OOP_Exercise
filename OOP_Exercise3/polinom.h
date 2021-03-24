@@ -16,7 +16,7 @@ public:
     Polinom(number, number, number);
     void setPrintMode(EPrintMode);
     number value(number);
-    int roots(number[]);
+    int roots(number[2]);
     friend QString& operator <<(QString&, Polinom&);
 };
 
