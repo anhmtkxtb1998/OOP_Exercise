@@ -4,62 +4,62 @@
 TInterface::TInterface(QWidget *parent) : QWidget(parent)
 {
     setWindowTitle("Работа №3");
-    setFixedSize(300,250);
+    setFixedSize(380,250);
 
     name_a = new QLabel("a =",this);
     name_a->setGeometry(50,20,30,20);
     numerator_a = new QLineEdit("1",this);
-    numerator_a->setGeometry(90,20,50,20);
+    numerator_a->setGeometry( 110,20,50,20);
     numerator_a->setValidator(new QIntValidator());
     delimeter_a = new QLabel(" / ",this);
-    delimeter_a->setGeometry(150,20,30,20);
+    delimeter_a->setGeometry(180,20,30,20);
     denominator_a = new QLineEdit("1", this);
-    denominator_a->setGeometry(190,20,50,20);
+    denominator_a->setGeometry(230,20,50,20);
     denominator_a->setValidator(new QIntValidator());
 
     name_b = new QLabel("b =",this);
     name_b->setGeometry(50,60,30,20);
     numerator_b = new QLineEdit("2",this);
-    numerator_b->setGeometry(90,60,50,20);
+    numerator_b->setGeometry(110,60,50,20);
     numerator_b->setValidator(new QIntValidator());
     delimeter_b = new QLabel(" / ",this);
-    delimeter_b->setGeometry(150,60,30,20);
+    delimeter_b->setGeometry(180,60,30,20);
     denominator_b = new QLineEdit("1",this);
-    denominator_b->setGeometry(190,60,50,20);
+    denominator_b->setGeometry(230,60,50,20);
     denominator_b->setValidator(new QIntValidator());
 
     name_c = new QLabel("c =",this);
     name_c->setGeometry(50,100,30,20);
     numerator_c = new QLineEdit("1",this);
-    numerator_c ->setGeometry(90,100,50,20);
+    numerator_c ->setGeometry(110,100,50,20);
     numerator_c->setValidator(new QIntValidator());
     delimeter_c = new QLabel(" / ",this);
-    delimeter_c->setGeometry(150,100,30,20);
+    delimeter_c->setGeometry(180,100,30,20);
     denominator_c = new QLineEdit("1",this);
-    denominator_c->setGeometry(190,100,50,20);
+    denominator_c->setGeometry(230,100,50,20);
     denominator_c->setValidator(new QIntValidator());
 
     name_x = new QLabel("x =",this);
     name_x->setGeometry(50,140,30,20);
     numerator_x = new QLineEdit("1",this);
-    numerator_x ->setGeometry(90,140,50,20);
+    numerator_x ->setGeometry(110,140,50,20);
     numerator_x->setValidator(new QIntValidator());
     delimeter_x = new QLabel(" / ",this);
-    delimeter_x->setGeometry(150,140,30,20);
+    delimeter_x->setGeometry(180,140,30,20);
     denominator_x = new QLineEdit("1",this);
-    denominator_x->setGeometry(190,140,50,20);
+    denominator_x->setGeometry(230,140,50,20);
     denominator_x->setValidator(new QIntValidator());
 
     value_btn = new QPushButton("Value", this);
     value_btn->setGeometry(10,180,60,30);
     root_btn = new QPushButton("Roots", this);
-    root_btn->setGeometry(80,180,60,30);
+    root_btn->setGeometry( 100,180,60,30);
     print_classic_btn = new QPushButton("Classic", this);
-    print_classic_btn->setGeometry(150,180,60,30);
+    print_classic_btn->setGeometry(190,180,60,30);
     print_canonic_btn = new QPushButton("Canonic", this);
-    print_canonic_btn->setGeometry(220,180,60,30);
+    print_canonic_btn->setGeometry(280,180,60,30);
     output = new QLabel(this);
-    output->setGeometry(10,220,280,25);
+    output->setGeometry(10,220,380,25);
 
     connect(value_btn,SIGNAL(pressed()),this,SLOT(value()));
     connect(root_btn,SIGNAL(pressed()),this,SLOT(roots()));
