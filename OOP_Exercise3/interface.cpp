@@ -73,10 +73,12 @@ TInterface::~TInterface()
     delete numerator_a;
     delete delimeter_a;
     delete denominator_a;
+
     delete name_b;
     delete numerator_b;
     delete delimeter_b;
     delete denominator_b;
+
     delete name_c;
     delete numerator_c;
     delete delimeter_c;
