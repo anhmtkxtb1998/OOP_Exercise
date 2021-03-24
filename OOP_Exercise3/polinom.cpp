@@ -19,14 +19,14 @@ number Polinom::value(number x)
     return (a * x * x + b * x + c);
 }
 
-int Polinom::roots(number xroots[])
+int Polinom::roots(number xroots[2])
 {
     number discr = b * b - 4 * a * c;
     if (discr >= 0)
     {
         xroots[0] = (-b - sqrt(discr))/(2 * a);
         xroots[1] = (-b + sqrt(discr))/(2 * a);
-        if (-a * (xroots[0] + xroots[1]) == b && a * xroots[0] * xroots[1] == c)
+        if (-a * (xroots[0] + xroots[1]) == b && a * xroots[0] * xroots[1] == c && !(xroots[0] == xroots[1]))
         {
             return 2;
         }
@@ -40,15 +40,20 @@ int Polinom::roots(number xroots[])
             xroots[0] = xroots[1];
             return 1;
         }
-
     }
     return 0;
 }
 
-QString& operator <<(QString& os,Polinom& p)
+QString& operator <<(QString& s,Polinom& p)
 {
-    if (p.printmode == EPrintModeClassic){
-        os << p.a; os += "x^2 " + QString(p.b < 0 ? "- " : "+ ") ;os << std::abs(p.b) ;os += "x " + QString(p.c < 0 ? "- " : "+ "); os << std::abs(p.c); os += "\n";
+    if (p.printmode == EPrintModeClassic)
+    {
+        s += "p(x) = ";
+        s << p.a;
+        s += "x^2 " + QString(p.b < 0 ? "- " : "+ ");
+        s << std::abs(p.b);
+        s += "x " + QString(p.c < 0 ? "- " : "+ ");
+        s << std::abs(p.c);
     }
     else
     {
@@ -56,12 +61,17 @@ QString& operator <<(QString& os,Polinom& p)
         if (x0 * 2 * p.a == -p.b)
         {
             number y0 = p.value(x0);
-            os  << p.a; os += "(x " + QString(x0 < 0 ? "+ " : "- "); os << std::abs(x0); os += ")^2 " + QString(y0 < 0 ? "- " : "+ "); os << std::abs(y0) ; os +=  "\n";
+            s += "p(x) = ";
+            s << p.a;
+            s += "(x " + QString(x0 < 0 ? "+ " : "- ");
+            s << std::abs(x0);
+            s += ")^2 " + QString(y0 < 0 ? "- " : "+ ");
+            s << std::abs(y0) ;
         }
         else
         {
-            os += "Cannot output canonic form because x0 = -b/(2*a) does not belong to type 'number'\n";
+            s += "Cannot output canonic form because x0 = -b/(2*a) does not belong to type 'number'";
         }
     }
-    return os;
+    return s;
 }

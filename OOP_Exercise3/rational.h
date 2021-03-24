@@ -1,7 +1,6 @@
 #ifndef TRATIONAL_H
 #define TRATIONAL_H
-#include <iostream>
-#include<QString>
+#include <QString>
 class TRational;
 
 namespace std
@@ -12,12 +11,12 @@ namespace std
 class TRational
 {
     int a, b;
+    int gcd(int, int);
+    void compact();
 public:
     TRational();
     TRational(int, int);
     TRational(const int&);
-    int gcd(int, int);
-    void compact();
     bool operator ==(const TRational &) const;
     bool operator >=(const TRational &) const;
     bool operator <(const TRational &) const;

@@ -39,10 +39,10 @@ void TRational::compact()
     }
 }
 
-QString& operator <<(QString& os, TRational r)
+QString& operator <<(QString& s, TRational r)
 {
-    os += "( " + QString().setNum(r.a) + "/" + QString().setNum(r.b) +")";
-    return os;
+    s += "(" + QString().setNum(r.a) + "/" + QString().setNum(r.b) +")";
+    return s;
 }
 
 
