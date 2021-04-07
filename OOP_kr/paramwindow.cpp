@@ -1,5 +1,5 @@
 #include "paramwindow.h"
-#include "ui_mainwindow.h"
+#include "ui_paramwindow.h"
 
 TParamwindow::TParamwindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,7 +8,7 @@ TParamwindow::TParamwindow(QWidget *parent)
     ui->setupUi(this);
     connect(ui->btn1,SIGNAL(pressed()), this, SLOT(ControlEvents()));
     connect(ui->btn2, SIGNAL(pressed()), this, SLOT(ControlEvents()));
-   connect(ui->s_order, SIGNAL(valueChanged(int)),this, SLOT(Getinformation(int)));
+    connect(ui->s_order, SIGNAL(valueChanged(int)),this, SLOT(Getinformation(int)));
 }
 
 TParamwindow::~TParamwindow()

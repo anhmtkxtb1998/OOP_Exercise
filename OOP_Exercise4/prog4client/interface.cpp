@@ -1,5 +1,6 @@
 #include "interface.h"
 #include "common.h"
+
 TInterface::TInterface(QWidget *parent) : QWidget(parent)
 {
     setWindowTitle("Работа №3");
@@ -89,43 +90,49 @@ TInterface::~TInterface()
     delete print_classic_btn;
     delete print_canonic_btn;
 }
-void TInterface::formRequest(){
+
+void TInterface::formRequest()
+{
     QString msg;
     msg << numerator_a->text() << denominator_a->text();
     msg << numerator_b->text() << denominator_b->text();
     msg << numerator_c->text() << denominator_c->text();
     QPushButton * btn = (QPushButton *) sender();
-    if(btn == value_btn){
+    if (btn == value_btn)
+    {
        msg << QString().setNum(VALUE_REQUEST);
-       msg <<numerator_x->text() << denominator_x->text();
+       msg << numerator_x->text() << denominator_x->text();
     }
-    else if(btn == root_btn)
-        msg << QString().setNum(ROOT_ANSWER);
-    else if(btn == print_classic_btn)
+    else if (btn == root_btn)
+        msg << QString().setNum(ROOT_REQUEST);
+    else if (btn == print_classic_btn)
         msg << QString().setNum(PRINT_CLASSIC_REQUEST);
-    else if(btn == print_canonic_btn)
+    else if (btn == print_canonic_btn)
         msg << QString().setNum(PRINT_CANONIC_REQUEST);
    emit request(msg);
 }
-void TInterface::answer(QString msg){
+
+void TInterface::answer(QString msg)
+{
     QString text;
     int p = msg.indexOf(separator);
     int t = msg.left(p).toInt();
-    msg =msg.mid(p + 1, msg.length() - p - 2);
-    if(t == VALUE_ANSWER){
-        text = "p";
-        p = msg.indexOf(separator);
-        text+= msg.left(p);
-        text+="=";
-        text += msg.mid(p + 1, msg.length()- p - 1);
-        output->setText(text);
-    }
-    else if(t == PRINT_ANSWER){
+    msg = msg.mid(p+1, msg.length()-p-2);
+    if (t == VALUE_ANSWER)
+    {
         text = "p(x) = ";
-        text+= msg;
+        p = msg.indexOf(separator);
+        text += msg.mid(p+1, msg.length()-p-1);
         output->setText(text);
     }
-    else if(t == ROOT_ANSWER){
+    else if (t == PRINT_ANSWER)
+    {
+        text = "p(x) = ";
+        text += msg;
+        output->setText(text);
+    }
+    else if (t == ROOT_ANSWER)
+    {
         text += msg;
         output->setText(text);
     }
