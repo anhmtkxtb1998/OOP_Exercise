@@ -34,6 +34,7 @@ class TInterface : public QWidget
 public:
     TInterface(QWidget *parent = nullptr);
     ~TInterface();
+
 public slots:
     void answer(QString);
 

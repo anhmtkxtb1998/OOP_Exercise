@@ -106,21 +106,25 @@ TRational std::abs(TRational r)
     TRational res(std::abs(r.a), r.b);
     return res;
 }
+
 QString& operator <<(QString& s, TRational r)
 {
     s += "(" + QString().setNum(r.a) + "/" + QString().setNum(r.b) +")";
     return s;
 }
-TRational::operator QString(){
+
+TRational::operator QString()
+{
     QString s;
-    s+= "(" + QString().setNum(a) + "/" + QString().setNum(b) +")";
+    s += "(" + QString().setNum(a) + "/" + QString().setNum(b) +")";
     return s;
 }
+
 TRational::TRational(const QByteArray& arr)
 {
     int p = arr.indexOf(SEPARATOR);
-     a = arr.left(p).toInt();
-     b = arr.right(arr.length()-p-1).toInt();
+    a = arr.left(p).toInt();
+    b = arr.right(arr.length()-p-1).toInt();
 }
 
 QByteArray& operator>>(QByteArray& arr, TRational& c)
@@ -139,9 +143,13 @@ void TRational::setSeparator(QChar ch)
 {
     SEPARATOR = ch;
 }
-int TRational::get_value_a(){
+
+int TRational::get_value_a()
+{
     return this->a;
 }
-int TRational::get_value_b(){
+
+int TRational::get_value_b()
+{
     return this->b;
 }
