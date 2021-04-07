@@ -98,7 +98,8 @@ void TInterface::formRequest()
     msg << numerator_b->text() << denominator_b->text();
     msg << numerator_c->text() << denominator_c->text();
     QPushButton * btn = (QPushButton *) sender();
-    if (btn == value_btn){
+    if (btn == value_btn)
+    {
        msg << QString().setNum(VALUE_REQUEST);
        msg << numerator_x->text() << denominator_x->text();
     }

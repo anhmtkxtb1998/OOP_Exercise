@@ -21,6 +21,13 @@ TRational::TRational(const int& a)
     this->b = 1;
 }
 
+TRational::TRational(const QByteArray& arr)
+{
+    int p = arr.indexOf(SEPARATOR);
+    a = arr.left(p).toInt();
+    b = arr.right(arr.length()-p-1).toInt();
+}
+
 int TRational::gcd(int a, int b)
 {
     if (b == 0)
@@ -39,6 +46,21 @@ void TRational::compact()
         a *= -1;
         b *= -1;
     }
+}
+
+int TRational::get_value_a()
+{
+    return this->a;
+}
+
+int TRational::get_value_b()
+{
+    return this->b;
+}
+
+void TRational::setSeparator(QChar ch)
+{
+    SEPARATOR = ch;
 }
 
 bool TRational::operator ==(const TRational & p) const
@@ -113,21 +135,7 @@ QString& operator <<(QString& s, TRational r)
     return s;
 }
 
-TRational::operator QString()
-{
-    QString s;
-    s += "(" + QString().setNum(a) + "/" + QString().setNum(b) +")";
-    return s;
-}
-
-TRational::TRational(const QByteArray& arr)
-{
-    int p = arr.indexOf(SEPARATOR);
-    a = arr.left(p).toInt();
-    b = arr.right(arr.length()-p-1).toInt();
-}
-
-QByteArray& operator>>(QByteArray& arr, TRational& c)
+QByteArray& operator >>(QByteArray& arr, TRational& c)
 {
     int p = arr.indexOf(TRational::SEPARATOR);
     p = arr.indexOf(TRational::SEPARATOR,p+1);
@@ -139,17 +147,9 @@ QByteArray& operator>>(QByteArray& arr, TRational& c)
     return arr;
 }
 
-void TRational::setSeparator(QChar ch)
+TRational::operator QString()
 {
-    SEPARATOR = ch;
-}
-
-int TRational::get_value_a()
-{
-    return this->a;
-}
-
-int TRational::get_value_b()
-{
-    return this->b;
+    QString s;
+    s += "(" + QString().setNum(a) + "/" + QString().setNum(b) +")";
+    return s;
 }
