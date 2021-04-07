@@ -117,7 +117,7 @@ void TInterface::answer(QString msg){
         p = msg.indexOf(separator);
         text+= msg.left(p);
         text+="=";
-        text += msg.mid(p + 1, msg.length()- p -2);
+        text += msg.mid(p + 1, msg.length()- p - 1);
         output->setText(text);
     }
     else if(t == PRINT_ANSWER){
