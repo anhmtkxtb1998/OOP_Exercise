@@ -3,7 +3,7 @@
 
 TInterface::TInterface(QWidget *parent) : QWidget(parent)
 {
-    setWindowTitle("Работа №3");
+    setWindowTitle("Работа №4");
     setFixedSize(380,250);
 
     name_a = new QLabel("a =",this);

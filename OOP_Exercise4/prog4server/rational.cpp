@@ -26,6 +26,7 @@ TRational::TRational(const QByteArray& arr)
     int p = arr.indexOf(SEPARATOR);
     a = arr.left(p).toInt();
     b = arr.right(arr.length()-p-1).toInt();
+    this->compact();
 }
 
 int TRational::gcd(int a, int b)

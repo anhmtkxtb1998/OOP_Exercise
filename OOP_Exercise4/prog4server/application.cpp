@@ -8,10 +8,10 @@ TApplication::TApplication(int argc, char *argv[]): QCoreApplication(argc,argv)
                         QHostAddress("127.0.0.1"), 10001};
     comm = new TCommunicator(pars, this);
 
-    connect(comm,SIGNAL(recieved(QByteArray)),this,SLOT(recieve(QByteArray)));
+    connect(comm,SIGNAL(received(QByteArray)),this,SLOT(receive(QByteArray)));
 }
 
-void TApplication::recieve(QByteArray msg)
+void TApplication::receive(QByteArray msg)
 {
     QString answer, s;
     number a, b, c, x, v;
