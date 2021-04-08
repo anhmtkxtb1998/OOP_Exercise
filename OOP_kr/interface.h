@@ -2,13 +2,15 @@
 #define INTERFACE_H
 
 #include <QMainWindow>
-#include<QCloseEvent>
+#include <QCloseEvent>
 #include "paramwindow.h"
 #include "controlwindow.h"
 #include "statewindow.h"
 #include "eventypes.h"
-namespace Ui {
-class TInterface;
+
+namespace Ui
+{
+    class TInterface;
 }
 
 class TInterface : public QMainWindow

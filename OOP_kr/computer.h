@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "eventypes.h"
+
 class TComputer: public QObject
 {
     TParamdata param;

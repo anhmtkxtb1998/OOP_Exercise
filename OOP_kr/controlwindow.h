@@ -2,9 +2,9 @@
 #define CONTROLWINDOW_H
 
 #include <QMainWindow>
-#include<QCloseEvent>
-#include<QPushButton>
-#include<QMessageBox>
+#include <QCloseEvent>
+#include <QPushButton>
+#include <QMessageBox>
 #include "eventypes.h"
 
 namespace Ui {
