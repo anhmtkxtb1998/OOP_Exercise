@@ -1,13 +1,13 @@
 #include "model.h"
 
-quint32 TModel::time_sloving = 20;
-quint32 TModel ::time_failure = 30;
+quint32 TModel::time_solving = 20;
+quint32 TModel::time_failure = 30;
 
 TModel::TModel()
 {
-   Init();
+   init();
    p_timer = new QTimer(this);
-   connect(p_timer, SIGNAL(timeout()), this, SLOT(Tact()));
+   connect(p_timer, SIGNAL(timeout()), this, SLOT(tact()));
    p_timer->start(1000);
 }
 
@@ -17,25 +17,25 @@ TModel::~TModel()
     delete p_timer;
 }
 
-void TModel::Init()
+void TModel::init()
 {
     lst_com.clear();
     for (int i = 1; i < 6; i++)
     {
         TParamdata data;
         data.order = i;
-        data.time_solving = time_sloving;
+        data.time_solving = time_solving;
         data.time_failure = time_failure;
         TStatedata state;
         state.isbusy = false;
-        state.time_remaning = time_sloving;
+        state.time_remaning = time_solving;
         state.time_failure = time_failure;
         TComputer * tmp = new TComputer(data, state);
         lst_com.append(tmp);
     }
 }
 
-void TModel::Paramrequest(int order)
+void TModel::paramRequest(int order)
 {
     TEvent msg(PARAMREQUEST);
     TComputer * tmp = lst_com[order-1];
@@ -43,7 +43,7 @@ void TModel::Paramrequest(int order)
     emit sendModelEvent(msg);
 }
 
-void TModel::Staterequest(int order)
+void TModel::stateRequest(int order)
 {
     TEvent msg(STATEREQUEST);
     TComputer * tmp = lst_com[order-1];
@@ -52,7 +52,7 @@ void TModel::Staterequest(int order)
     emit sendModelEvent(msg);
 }
 
-void TModel::Tact()
+void TModel::tact()
 {
     for (int i = 0;i < 5;i++)
     {
@@ -87,7 +87,7 @@ void TModel::recevieModelEvent(TEvent msg)
     switch (msg.type)
     {
     case PARAMREQUEST:
-        Paramrequest(msg.data.p.order);
+        paramRequest(msg.data.p.order);
         break;
 
     case PARAMMESSAGE:
@@ -101,20 +101,20 @@ void TModel::recevieModelEvent(TEvent msg)
         break;
 
     case STATEREQUEST:
-        Staterequest(msg.data.p.order);
+        stateRequest(msg.data.p.order);
         break;
 
     case RESET:
     {
-        Init();
-        Paramrequest(1);
-        Staterequest(1);
+        init();
+        paramRequest(1);
+        stateRequest(1);
     }
         break;
 
     case REQUEST_PROBLEM:
     {
-        qsrand(QTime::currentTime().msec());
+//        qsrand(QTime::currentTime().msec());
         QMessageBox msb;
         QString m;
         int order;
@@ -130,7 +130,8 @@ void TModel::recevieModelEvent(TEvent msg)
         {
             do
             {
-                order = qrand() % lst_com.size() + 1;
+//                order = qrand() % lst_com.size() + 1;
+                order = QRandomGenerator::global()->generate() % lst_com.size() + 1;
             } while(lst_com[order-1]->get_state().isbusy);
 
             TStatedata tmp_state = lst_com[order-1]->get_state();

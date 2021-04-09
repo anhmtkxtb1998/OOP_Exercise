@@ -17,7 +17,7 @@ TParamwindow::~TParamwindow()
 void TParamwindow::setCurrentParamdata(TEvent msg)
 {
     ui->s_order->setValue(msg.data.p.order);
-    ui->s_time_solving->setValue(msg.data.p.time_sloving);
+    ui->s_time_solving->setValue(msg.data.p.time_solving);
     ui->s_failure_time->setValue(msg.data.p.time_failure);
 }
 
@@ -34,7 +34,7 @@ void TParamwindow::ControlEvents()
     {
         TEvent msg(PARAMMESSAGE);
         msg.data.p.order = ui->s_order->value();
-        msg.data.p.time_sloving = ui->s_time_solving->value();
+        msg.data.p.time_solving = ui->s_time_solving->value();
         msg.data.p.time_failure = ui->s_failure_time->value();
         emit sendParamEvent(msg);
     }
