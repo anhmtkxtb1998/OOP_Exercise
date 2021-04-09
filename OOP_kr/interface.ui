@@ -25,7 +25,7 @@
     <item>
      <widget class="QPushButton" name="btn_state">
       <property name="text">
-       <string>Сотояния</string>
+       <string>Состояния</string>
       </property>
      </widget>
     </item>
@@ -44,7 +44,7 @@
      <x>0</x>
      <y>0</y>
      <width>190</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

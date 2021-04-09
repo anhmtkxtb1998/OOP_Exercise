@@ -70,7 +70,6 @@ void TModel::tact()
         if (tmp_state.time_failure <= 0)
         {
             tmp_state.isbusy = true;
-            //tmp_state.time_remaning = lst_com[i]->get_param().time_sloving;
             tmp_state.time_failure -=1;
         }
         if (tmp_state.time_failure < -10)
@@ -114,7 +113,6 @@ void TModel::recevieModelEvent(TEvent msg)
 
     case REQUEST_PROBLEM:
     {
-//        qsrand(QTime::currentTime().msec());
         QMessageBox msb;
         QString m;
         int order;
@@ -130,7 +128,6 @@ void TModel::recevieModelEvent(TEvent msg)
         {
             do
             {
-//                order = qrand() % lst_com.size() + 1;
                 order = QRandomGenerator::global()->generate() % lst_com.size() + 1;
             } while(lst_com[order-1]->get_state().isbusy);
 
