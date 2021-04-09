@@ -7,8 +7,9 @@
 #include <QMessageBox>
 #include "eventypes.h"
 
-namespace Ui {
-class TControlwindow;
+namespace Ui
+{
+    class TControlwindow;
 }
 
 class TControlwindow : public QMainWindow

@@ -3,13 +3,7 @@
 
 quint32 TControlwindow::order = 1;
 
-<<<<<<< HEAD
 TControlwindow::TControlwindow(QMainWindow *parent): QMainWindow(parent), ui(new Ui::TControlwindow)
-=======
-TControlwindow::TControlwindow(QMainWindow *parent) :
-    QMainWindow(parent),
-    ui(new Ui::TControlwindow)
->>>>>>> 031abc6e6d9c4206835005df99eea4dbd5c78f8f
 {
     ui->setupUi(this);
     connect(ui->btn_request, SIGNAL(pressed()), this, SLOT(ControlEvents()));
@@ -35,7 +29,7 @@ void TControlwindow::ControlEvents()
        TEvent msg(REQUEST_PROBLEM);
        msg.data.order_problem = order;
 
-       QString m = "Отправил запрос № ";
+       QString m = "Поступила задача №";
        m.append(QString().setNum(order));
        QMessageBox::information(this,"Сообщение",m);
        emit sendControlEvent(msg);

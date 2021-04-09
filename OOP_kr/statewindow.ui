@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>358</width>
+    <width>374</width>
     <height>305</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <item row="3" column="0">
      <widget class="QLabel" name="label_4">
       <property name="text">
-       <string>Ост.время до сбоя:</string>
+       <string>Оставшееся до сбоя время:</string>
       </property>
      </widget>
     </item>
@@ -49,7 +49,7 @@
     <item row="2" column="0">
      <widget class="QLabel" name="label_3">
       <property name="text">
-       <string>Время для решения:</string>
+       <string>Время до конца решения:</string>
       </property>
      </widget>
     </item>
@@ -81,7 +81,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>358</width>
+     <width>374</width>
      <height>20</height>
     </rect>
    </property>

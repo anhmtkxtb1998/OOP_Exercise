@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>193</width>
+    <width>293</width>
     <height>153</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QPushButton" name="btn_request">
       <property name="text">
-       <string>Отправить запрос</string>
+       <string>Новая задача</string>
       </property>
      </widget>
     </item>
@@ -36,7 +36,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>193</width>
+     <width>293</width>
      <height>20</height>
     </rect>
    </property>
