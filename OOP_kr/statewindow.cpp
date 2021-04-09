@@ -1,7 +1,9 @@
 #include "statewindow.h"
 #include "ui_statewindow.h"
 
-TStatewindow::TStatewindow(QWidget *parent): QMainWindow(parent), ui(new Ui::TStatewindow)
+TStatewindow::TStatewindow(QMainWindow *parent) :
+    QMainWindow(parent),
+    ui(new Ui::TStatewindow)
 {
     ui->setupUi(this);
 

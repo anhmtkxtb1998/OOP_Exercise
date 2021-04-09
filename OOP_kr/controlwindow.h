@@ -16,7 +16,7 @@ class TControlwindow : public QMainWindow
     Q_OBJECT
 static quint32 order;
 public:
-    explicit TControlwindow(QWidget *parent = nullptr);
+    explicit TControlwindow(QMainWindow *parent = nullptr);
     ~TControlwindow();
 protected:
     void closeEvent(QCloseEvent*);

@@ -1,7 +1,9 @@
 #include "paramwindow.h"
 #include "ui_paramwindow.h"
 
-TParamwindow::TParamwindow(QWidget *parent): QMainWindow(parent), ui(new Ui:: TParamwindow)
+TParamwindow::TParamwindow(QMainWindow *parent)
+    : QMainWindow(parent)
+    , ui(new Ui:: TParamwindow)
 {
     ui->setupUi(this);
     connect(ui->btn1,SIGNAL(pressed()), this, SLOT(ControlEvents()));

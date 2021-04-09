@@ -3,7 +3,9 @@
 
 quint32 TControlwindow::order = 1;
 
-TControlwindow::TControlwindow(QWidget *parent): QMainWindow(parent), ui(new Ui::TControlwindow)
+TControlwindow::TControlwindow(QMainWindow *parent) :
+    QMainWindow(parent),
+    ui(new Ui::TControlwindow)
 {
     ui->setupUi(this);
     connect(ui->btn_request, SIGNAL(pressed()), this, SLOT(ControlEvents()));
