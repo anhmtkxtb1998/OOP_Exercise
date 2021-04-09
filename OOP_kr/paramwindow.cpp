@@ -1,7 +1,7 @@
 #include "paramwindow.h"
-#include "ui_mainwindow.h"
+#include "ui_paramwindow.h"
 
-TParamwindow::TParamwindow(QWidget *parent)
+TParamwindow::TParamwindow(QMainWindow *parent)
     : QMainWindow(parent)
     , ui(new Ui:: TParamwindow)
 {

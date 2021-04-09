@@ -1,7 +1,7 @@
 #include "controlwindow.h"
 #include "ui_controlwindow.h"
 quint32 TControlwindow::order = 1;
-TControlwindow::TControlwindow(QWidget *parent) :
+TControlwindow::TControlwindow(QMainWindow *parent) :
     QMainWindow(parent),
     ui(new Ui::TControlwindow)
 {

@@ -14,7 +14,7 @@ class TParamwindow : public QMainWindow
     Q_OBJECT
 
 public:
-   TParamwindow(QWidget *parent = nullptr);
+   explicit TParamwindow(QMainWindow *parent = nullptr);
     ~TParamwindow();
     void setCurrentParamdata(TEvent);
 

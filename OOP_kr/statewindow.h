@@ -15,7 +15,7 @@ class TStatewindow : public QMainWindow
     Q_OBJECT
     QTimer * p_timer;
 public:
-    explicit TStatewindow(QWidget *parent = nullptr);
+    explicit TStatewindow(QMainWindow *parent = nullptr);
     ~TStatewindow();
     void setCurrentState(TEvent);
 
