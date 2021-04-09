@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>331</width>
-    <height>261</height>
+    <width>336</width>
+    <height>262</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,7 +35,7 @@
     <item row="1" column="0">
      <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>Время решения (секунды)</string>
+       <string>Время на решения (секунды)</string>
       </property>
      </widget>
     </item>
@@ -52,7 +52,7 @@
     <item row="2" column="0">
      <widget class="QLabel" name="label_3">
       <property name="text">
-       <string>Время сбоя (секунды)</string>
+       <string>Время до сбоя (секунды)</string>
       </property>
      </widget>
     </item>
@@ -87,7 +87,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>331</width>
+     <width>336</width>
      <height>20</height>
     </rect>
    </property>

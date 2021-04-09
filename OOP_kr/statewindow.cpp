@@ -19,22 +19,16 @@ TStatewindow::~TStatewindow()
 void TStatewindow::setCurrentState(TEvent msg)
 {
     ui->s_order->setValue(msg.data.p.order);
-    ui->lbl_status->setText(((msg.data.s.isbusy) ? "Занятое":"Свободное"));
+    ui->lbl_status->setText(((msg.data.s.isbusy) ? "Занят":"Свободен"));
     ui->lbl_time_solve_remaining->setText(QString().setNum(msg.data.s.time_remaning));
 
     if (msg.data.s.time_failure > 0)
     {
-        ui->label_4->setText("Ост.время до сбоя");
         ui->lbl_time_failure_remaining->setText(QString().setNum(msg.data.s.time_failure));
     }
     else
     {
-<<<<<<< HEAD
         ui->lbl_time_failure_remaining->setText(QString().setNum(0));
-=======
-        ui->label_4->setText("Время востановления");
-        ui->lbl_time_failure_remaining->setText(QString().setNum(-msg.data.s.time_failure));
->>>>>>> 031abc6e6d9c4206835005df99eea4dbd5c78f8f
     }
 }
 
