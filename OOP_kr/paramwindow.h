@@ -6,7 +6,10 @@
 #include "eventypes.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class TParamwindow; }
+namespace Ui
+{
+    class TParamwindow;
+}
 QT_END_NAMESPACE
 
 class TParamwindow : public QMainWindow
@@ -14,20 +17,23 @@ class TParamwindow : public QMainWindow
     Q_OBJECT
 
 public:
-   explicit TParamwindow(QMainWindow *parent = nullptr);
+    TParamwindow(QMainWindow *parent = nullptr);
     ~TParamwindow();
     void setCurrentParamdata(TEvent);
 
 protected:
-   void closeEvent(QCloseEvent *);
+    void closeEvent(QCloseEvent *);
+
 private slots:
-   void ControlEvents();
-   void Getinformation(int);
+    void ControlEvents();
+    void Getinformation(int);
+
 signals:
-   void closing();
-   void sendParamEvent(TEvent);
+    void closing();
+    void sendParamEvent(TEvent);
 
 private:
     Ui::TParamwindow *ui;
 };
+
 #endif // PARAMWINDOW_H

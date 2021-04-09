@@ -1,6 +1,7 @@
 #ifndef TAPPLICATION_H
 #define TAPPLICATION_H
-#include<QApplication>
+
+#include <QApplication>
 #include "interface.h"
 #include "model.h"
 

@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>№.Компьютера</string>
+       <string>№ компьютера</string>
       </property>
      </widget>
     </item>
@@ -35,7 +35,7 @@
     <item row="1" column="0">
      <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>Время решения(секунды)</string>
+       <string>Время решения (секунды)</string>
       </property>
      </widget>
     </item>
@@ -52,7 +52,7 @@
     <item row="2" column="0">
      <widget class="QLabel" name="label_3">
       <property name="text">
-       <string>Время сбоя(секунды)</string>
+       <string>Время сбоя (секунды)</string>
       </property>
      </widget>
     </item>
@@ -88,7 +88,7 @@
      <x>0</x>
      <y>0</y>
      <width>331</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
