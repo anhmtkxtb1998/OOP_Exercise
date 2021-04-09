@@ -7,9 +7,10 @@ TApplication::TApplication(int argc, char **argv): QApplication(argc,argv)
     model =new TModel();
     connect(interface, SIGNAL(sendInterfaceEvent(TEvent)), model,SLOT(recevieModelEvent(TEvent)));
     connect(model,SIGNAL(sendModelEvent(TEvent)), interface,SLOT(recevieInterfaceEvent(TEvent)));
-
 }
-TApplication::~TApplication(){
+
+TApplication::~TApplication()
+{
     delete interface;
     delete model;
 }

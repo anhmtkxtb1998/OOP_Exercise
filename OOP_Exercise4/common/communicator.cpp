@@ -5,7 +5,7 @@ TCommunicator::TCommunicator(TCommParams& pars, QObject *parent) : QUdpSocket(pa
     params = pars;
     ready = bind(params.rHost, params.rPort, QAbstractSocket::ShareAddress | QAbstractSocket::ReuseAddressHint);
     if (ready)
-        connect(this,SIGNAL(readyRead()),this,SLOT(recieve()));
+        connect(this,SIGNAL(readyRead()),this,SLOT(receive()));
 }
 
 bool TCommunicator::isReady()
@@ -21,13 +21,13 @@ void TCommunicator::send(QByteArray msg)
     }
 }
 
-void TCommunicator::recieve()
+void TCommunicator::receive()
 {
     if (hasPendingDatagrams())
     {
         quint64 size = pendingDatagramSize();
         QByteArray msg(size,'\0');
         readDatagram(msg.data(), size);
-        emit recieved(msg);
+        emit received(msg);
     }
 }

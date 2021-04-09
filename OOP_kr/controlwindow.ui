@@ -25,7 +25,7 @@
     <item row="1" column="0">
      <widget class="QPushButton" name="btn_reset">
       <property name="text">
-       <string>Сбор</string>
+       <string>Сброс</string>
       </property>
      </widget>
     </item>
@@ -37,7 +37,7 @@
      <x>0</x>
      <y>0</y>
      <width>193</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

@@ -2,21 +2,27 @@
 #define EVENTYPES_H
 #include "paramdata.h"
 #include "statedata.h"
-enum EEvents{
-  PARAMMESSAGE = 1,
-  PARAMREQUEST,
-  STATEREQUEST,
-  RESET,
-  REQUEST_PROBLEM,
 
+enum EEvents
+{
+    PARAMMESSAGE = 1,
+    PARAMREQUEST,
+    STATEREQUEST,
+    RESET,
+    REQUEST_PROBLEM,
 };
-struct TEvent{
+
+struct TEvent
+{
     EEvents type;
-    struct {
+
+    struct
+    {
         TParamdata p;
         TStatedata s;
         quint32 order_problem;
-    }data;
+    } data;
+
     TEvent(EEvents t){type = t;};
 };
 

@@ -1,6 +1,8 @@
 #include "controlwindow.h"
 #include "ui_controlwindow.h"
+
 quint32 TControlwindow::order = 1;
+
 TControlwindow::TControlwindow(QMainWindow *parent) :
     QMainWindow(parent),
     ui(new Ui::TControlwindow)
@@ -14,13 +16,18 @@ TControlwindow::~TControlwindow()
 {
     delete ui;
 }
-void TControlwindow::closeEvent(QCloseEvent* event){
+
+void TControlwindow::closeEvent(QCloseEvent* event)
+{
     emit closing();
     event->accept();
 }
-void TControlwindow::ControlEvents(){
+
+void TControlwindow::ControlEvents()
+{
    QPushButton * btn = (QPushButton *)sender();
-   if(btn == ui->btn_request){
+   if (btn == ui->btn_request)
+   {
        TEvent msg(REQUEST_PROBLEM);
        msg.data.order_problem = order;
        QMessageBox msb;
@@ -31,7 +38,8 @@ void TControlwindow::ControlEvents(){
        emit sendControlEvent(msg);
        order++;
    }
-   if(btn == ui->btn_reset){
+   if (btn == ui->btn_reset)
+   {
        TEvent msg(RESET);
        emit sendControlEvent(msg);
    }

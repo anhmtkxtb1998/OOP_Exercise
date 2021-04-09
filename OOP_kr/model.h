@@ -1,9 +1,10 @@
 #ifndef TMODEL_H
 #define TMODEL_H
+
 #include<QObject>
 #include<QTimer>
 #include<QList>
-#include<qrandom.h>
+#include<QRandomGenerator>
 #include<QTime>
 #include<QMessageBox>
 #include "computer.h"
@@ -13,7 +14,7 @@
 class TModel: public QObject
 {
     Q_OBJECT
-    static quint32 time_sloving;
+    static quint32 time_solving;
     static quint32 time_failure;
 
     QList<TComputer*> lst_com;
@@ -21,11 +22,11 @@ class TModel: public QObject
 public:
     TModel();
     ~TModel();
-    void Init();
-    void Paramrequest(int);
-    void Staterequest(int);
+    void init();
+    void paramRequest(int);
+    void stateRequest(int);
 private slots:
-    void Tact();
+    void tact();
 public slots:
     void recevieModelEvent(TEvent);
 
