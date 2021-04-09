@@ -29,7 +29,12 @@ void TStatewindow::setCurrentState(TEvent msg)
     }
     else
     {
+<<<<<<< HEAD
         ui->lbl_time_failure_remaining->setText(QString().setNum(0));
+=======
+        ui->label_4->setText("Время востановления");
+        ui->lbl_time_failure_remaining->setText(QString().setNum(-msg.data.s.time_failure));
+>>>>>>> 031abc6e6d9c4206835005df99eea4dbd5c78f8f
     }
 }
 

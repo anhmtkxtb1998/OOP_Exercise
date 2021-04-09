@@ -72,7 +72,11 @@ void TModel::tact()
             tmp_state.isbusy = true;
             tmp_state.time_failure -=1;
         }
+<<<<<<< HEAD
         if (tmp_state.time_failure < -1)
+=======
+        if (tmp_state.time_failure < -10)
+>>>>>>> 031abc6e6d9c4206835005df99eea4dbd5c78f8f
         {
             tmp_state.time_failure = lst_com[i]->get_param().time_failure;
             tmp_state.isbusy = false;
@@ -123,7 +127,11 @@ void TModel::recevieModelEvent(TEvent msg)
                 flag = false;
         }
         if (flag == true)
+<<<<<<< HEAD
             m = "Невозможно получить сообщение №" + QString().setNum(msg.data.order_problem);
+=======
+            m = "Can't recevie request " + QString().setNum(msg.data.order_problem);
+>>>>>>> 031abc6e6d9c4206835005df99eea4dbd5c78f8f
         else
         {
             do
@@ -135,7 +143,11 @@ void TModel::recevieModelEvent(TEvent msg)
             tmp_state.isbusy = true;
             tmp_state.time_remaning = lst_com[order-1]->get_param().time_solving;
             lst_com[order-1]->setstate(tmp_state);
+<<<<<<< HEAD
             m = "Получил сообщение №" + QString().setNum(msg.data.order_problem) + " копьютером №" + QString().setNum(order);
+=======
+            m = "Recevie request " + QString().setNum(msg.data.order_problem) + " by computer " +QString().setNum(order);
+>>>>>>> 031abc6e6d9c4206835005df99eea4dbd5c78f8f
         }
         msb.setText(m);
         msb.exec();

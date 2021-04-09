@@ -1,7 +1,11 @@
 #include "interface.h"
 #include "ui_interface.h"
 
+<<<<<<< HEAD
 TInterface::TInterface(QMainWindow *parent): QMainWindow(parent), ui(new Ui::TInterface)
+=======
+TInterface::TInterface(QWidget *parent): QMainWindow(parent), ui(new Ui::TInterface)
+>>>>>>> 031abc6e6d9c4206835005df99eea4dbd5c78f8f
 {
     paramwindow = nullptr;
     statewindow = nullptr;

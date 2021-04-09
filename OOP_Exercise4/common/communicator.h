@@ -21,17 +21,17 @@ class TCommunicator : public QUdpSocket
     TCommParams  params;
 
 public:
-    TCommunicator(TCommParams&,QObject *parent = nullptr);
+    TCommunicator(TCommParams&, QObject *parent = nullptr);
     bool isReady();
 
 signals:
-    void recieved(QByteArray);
+    void received(QByteArray);
 
 public slots:
     void send(QByteArray);
 
 private slots:
-    void recieve();
+    void receive();
 
 };
 

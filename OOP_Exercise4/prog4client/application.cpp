@@ -1,5 +1,5 @@
 #include "application.h"
-#include<QDebug>
+
 TApplication::TApplication(int argc, char *argv[]): QApplication(argc,argv)
 {
     TCommParams pars = {QHostAddress("127.0.0.1"), 10001,
@@ -9,7 +9,7 @@ TApplication::TApplication(int argc, char *argv[]): QApplication(argc,argv)
     interface = new TInterface();
     interface->show();
 
-    connect(comm,SIGNAL(recieved(QByteArray)),this,SLOT(fromCommunicator(QByteArray)));
+    connect(comm,SIGNAL(received(QByteArray)),this,SLOT(fromCommunicator(QByteArray)));
     connect(interface,SIGNAL(request(QString)),this,SLOT(toCommunicator(QString)));
 
 }
