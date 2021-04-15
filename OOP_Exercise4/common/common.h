@@ -14,6 +14,10 @@ enum messages
     ROOT_ANSWER,
     ERROR,
 };
+enum Modes{
+    I_MODE = 1,
+    R_MODE,
+};
 
 extern const QChar separator;
 QString& operator<< (QString&,const QString&);

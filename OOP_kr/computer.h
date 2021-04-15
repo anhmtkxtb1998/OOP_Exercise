@@ -6,6 +6,7 @@
 
 class TComputer: public QObject
 {
+
     TParamdata param;
     TStatedata state;
 public:

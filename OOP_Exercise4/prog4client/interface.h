@@ -7,7 +7,7 @@
 #include <QPushButton>
 #include <QString>
 #include <QValidator>
-
+#include<QRadioButton>
 
 class TInterface : public QWidget
 {
@@ -30,6 +30,9 @@ class TInterface : public QWidget
     QPushButton* root_btn;
     QPushButton* print_classic_btn;
     QPushButton* print_canonic_btn;
+
+    QRadioButton * i_button;
+    QRadioButton * r_button;
 
 public:
     TInterface(QWidget *parent = nullptr);

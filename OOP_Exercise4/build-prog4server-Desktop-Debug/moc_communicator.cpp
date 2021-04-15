@@ -32,13 +32,13 @@ struct qt_meta_stringdata_TCommunicator_t {
 static const qt_meta_stringdata_TCommunicator_t qt_meta_stringdata_TCommunicator = {
     {
 QT_MOC_LITERAL(0, 0, 13), // "TCommunicator"
-QT_MOC_LITERAL(1, 14, 8), // "recieved"
+QT_MOC_LITERAL(1, 14, 8), // "received"
 QT_MOC_LITERAL(2, 23, 0), // ""
 QT_MOC_LITERAL(3, 24, 4), // "send"
-QT_MOC_LITERAL(4, 29, 7) // "recieve"
+QT_MOC_LITERAL(4, 29, 7) // "receive"
 
     },
-    "TCommunicator\0recieved\0\0send\0recieve"
+    "TCommunicator\0received\0\0send\0receive"
 };
 #undef QT_MOC_LITERAL
 
@@ -78,16 +78,16 @@ void TCommunicator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         auto *_t = static_cast<TCommunicator *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->recieved((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
+        case 0: _t->received((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
         case 1: _t->send((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
-        case 2: _t->recieve(); break;
+        case 2: _t->receive(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             using _t = void (TCommunicator::*)(QByteArray );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&TCommunicator::recieved)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&TCommunicator::received)) {
                 *result = 0;
                 return;
             }
@@ -136,7 +136,7 @@ int TCommunicator::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void TCommunicator::recieved(QByteArray _t1)
+void TCommunicator::received(QByteArray _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

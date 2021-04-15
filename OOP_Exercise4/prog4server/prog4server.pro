@@ -19,15 +19,13 @@ INCLUDEPATH += ../common
 
 SOURCES += main.cpp \
     application.cpp \
-    polinom.cpp \
     ../common/communicator.cpp \
     ../common/common.cpp \
     rational.cpp
 
 HEADERS += \
     application.h \
-    polinom.h \
-    number.h \
     ../common/communicator.h \
     ../common/common.h \
+    polinom.h \
     rational.h

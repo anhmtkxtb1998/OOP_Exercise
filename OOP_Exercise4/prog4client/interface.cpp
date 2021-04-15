@@ -4,7 +4,7 @@
 TInterface::TInterface(QWidget *parent) : QWidget(parent)
 {
     setWindowTitle("Работа №4");
-    setFixedSize(380,250);
+    setFixedSize(380,300);
 
     name_a = new QLabel("a =",this);
     name_a->setGeometry(50,20,30,20);
@@ -58,8 +58,15 @@ TInterface::TInterface(QWidget *parent) : QWidget(parent)
     print_classic_btn->setGeometry(190,180,60,30);
     print_canonic_btn = new QPushButton("Canonic", this);
     print_canonic_btn->setGeometry(280,180,60,30);
+
+    i_button = new QRadioButton("Interger",this);
+    i_button->setGeometry(10, 230,120, 30);
+    r_button = new QRadioButton("Rational",this);
+    r_button->setGeometry(250, 230,120, 30);
+    i_button->setChecked(true);
+
     output = new QLabel(this);
-    output->setGeometry(10,220,380,25);
+    output->setGeometry(10,270,380,30);
 
     connect(value_btn,SIGNAL(pressed()),this,SLOT(formRequest()));
     connect(root_btn,SIGNAL(pressed()),this,SLOT(formRequest()));
@@ -84,6 +91,8 @@ TInterface::~TInterface()
     delete delimeter_c;
     delete denominator_c;
 
+    delete i_button;
+    delete r_button;
     delete output;
     delete value_btn;
     delete root_btn;
@@ -94,13 +103,27 @@ TInterface::~TInterface()
 void TInterface::formRequest()
 {
     QString msg;
+    if(i_button->isChecked()){
+        msg << QString().setNum(I_MODE);
+        msg << numerator_a->text();
+        msg << numerator_b->text();
+        msg << numerator_c->text();
+
+    }
+    else
+    {
+     msg << QString().setNum(R_MODE);
     msg << numerator_a->text() << denominator_a->text();
     msg << numerator_b->text() << denominator_b->text();
     msg << numerator_c->text() << denominator_c->text();
+    }
     QPushButton * btn = (QPushButton *) sender();
     if (btn == value_btn)
     {
        msg << QString().setNum(VALUE_REQUEST);
+       if(i_button->isChecked())
+           msg << numerator_x->text();
+       else
        msg << numerator_x->text() << denominator_x->text();
     }
     else if (btn == root_btn)

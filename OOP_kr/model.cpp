@@ -91,14 +91,51 @@ void TModel::recevieModelEvent(TEvent msg)
 
     case PARAMMESSAGE:
     {
+        QMessageBox msb;
+        QString m;
+        if(!lst_com[msg.data.p.order-1]->get_state().isbusy)
+        {
         lst_com[msg.data.p.order-1]->setparam(msg.data.p);
         TStatedata state = lst_com[msg.data.p.order-1]->get_state();
         state.time_remaning = msg.data.p.time_solving;
         state.time_failure = msg.data.p.time_failure;
         lst_com[msg.data.p.order-1]->setstate(state);
+         m = "Успешно изменил параметры компьютера № " + QString().setNum(msg.data.p.order);
+        }
+        else
+            m = "Компьютер № " + QString().setNum(msg.data.p.order) + " занят. Не успешно изменял параметры";
+
+        msb.setText(m);
+        msb.exec();
     }
         break;
+    case PARAM_RESET:
+    {
+        QMessageBox msb;
+        QString m;
+        if(!lst_com[msg.data.p.order-1]->get_state().isbusy)
+        {
+        TParamdata data;
+        data.order = msg.data.p.order;
+        data.time_solving = time_solving;
+        data.time_failure = time_failure;
+        TStatedata state;
+        state.isbusy = false;
+        state.time_remaning = time_solving;
+        state.time_failure = time_failure;
+        lst_com[msg.data.p.order -1] ->setparam(data);
+        lst_com[msg.data.p.order-1]->setstate(state);
+        paramRequest(msg.data.p.order);
+        stateRequest(msg.data.p.order);
+        m = "Успешно изменил параметры компьютера № " + QString().setNum(msg.data.p.order);
+        }
+        else
+            m = "Компьютер № " + QString().setNum(msg.data.p.order) + " занят. Не успешно изменял параметры";
 
+        msb.setText(m);
+        msb.exec();
+    }
+    break;
     case STATEREQUEST:
         stateRequest(msg.data.p.order);
         break;

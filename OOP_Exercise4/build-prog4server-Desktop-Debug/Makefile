@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = prog4server1.0.0
-DISTDIR = /home/anhdz98/Desktop/prog4/build-prog4server-Desktop-Debug/.tmp/prog4server1.0.0
+DISTDIR = /home/anhdz98/Desktop/OOP_Exercise/OOP_Exercise4/build-prog4server-Desktop-Debug/.tmp/prog4server1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5Network.so /usr/lib/x86_64-linux-gnu/libQt5Core.so -lpthread   
@@ -54,14 +54,12 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../prog4server/main.cpp \
 		../prog4server/application.cpp \
-		../prog4server/polinom.cpp \
 		../common/communicator.cpp \
 		../common/common.cpp \
 		../prog4server/rational.cpp moc_application.cpp \
 		moc_communicator.cpp
 OBJECTS       = main.o \
 		application.o \
-		polinom.o \
 		communicator.o \
 		common.o \
 		rational.o \
@@ -142,13 +140,11 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../prog4server/prog4server.pro ../prog4server/application.h \
-		../prog4server/polinom.h \
-		../prog4server/number.h \
 		../common/communicator.h \
 		../common/common.h \
+		../prog4server/polinom.h \
 		../prog4server/rational.h ../prog4server/main.cpp \
 		../prog4server/application.cpp \
-		../prog4server/polinom.cpp \
 		../common/communicator.cpp \
 		../common/common.cpp \
 		../prog4server/rational.cpp
@@ -329,8 +325,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../prog4server/application.h ../prog4server/polinom.h ../prog4server/number.h ../common/communicator.h ../common/common.h ../prog4server/rational.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../prog4server/main.cpp ../prog4server/application.cpp ../prog4server/polinom.cpp ../common/communicator.cpp ../common/common.cpp ../prog4server/rational.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../prog4server/application.h ../common/communicator.h ../common/common.h ../prog4server/polinom.h ../prog4server/rational.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../prog4server/main.cpp ../prog4server/application.cpp ../common/communicator.cpp ../common/common.cpp ../prog4server/rational.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -369,12 +365,12 @@ moc_application.cpp: ../prog4server/application.h \
 		../common/communicator.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/anhdz98/Desktop/prog4/build-prog4server-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/anhdz98/Desktop/prog4/prog4server -I/home/anhdz98/Desktop/prog4/common -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../prog4server/application.h -o moc_application.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/anhdz98/Desktop/OOP_Exercise/OOP_Exercise4/build-prog4server-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/anhdz98/Desktop/OOP_Exercise/OOP_Exercise4/prog4server -I/home/anhdz98/Desktop/OOP_Exercise/OOP_Exercise4/common -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../prog4server/application.h -o moc_application.cpp
 
 moc_communicator.cpp: ../common/communicator.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/anhdz98/Desktop/prog4/build-prog4server-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/anhdz98/Desktop/prog4/prog4server -I/home/anhdz98/Desktop/prog4/common -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../common/communicator.h -o moc_communicator.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/anhdz98/Desktop/OOP_Exercise/OOP_Exercise4/build-prog4server-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/anhdz98/Desktop/OOP_Exercise/OOP_Exercise4/prog4server -I/home/anhdz98/Desktop/OOP_Exercise/OOP_Exercise4/common -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../common/communicator.h -o moc_communicator.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -397,15 +393,9 @@ main.o: ../prog4server/main.cpp ../prog4server/application.h \
 application.o: ../prog4server/application.cpp ../prog4server/application.h \
 		../common/communicator.h \
 		../prog4server/polinom.h \
-		../prog4server/number.h \
 		../prog4server/rational.h \
 		../common/common.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o application.o ../prog4server/application.cpp
-
-polinom.o: ../prog4server/polinom.cpp ../prog4server/polinom.h \
-		../prog4server/number.h \
-		../prog4server/rational.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o polinom.o ../prog4server/polinom.cpp
 
 communicator.o: ../common/communicator.cpp ../common/communicator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o communicator.o ../common/communicator.cpp
