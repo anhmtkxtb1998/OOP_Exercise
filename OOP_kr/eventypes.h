@@ -7,6 +7,7 @@ enum EEvents
 {
     PARAMMESSAGE = 1,
     PARAMREQUEST,
+    PARAM_RESET,
     STATEREQUEST,
     RESET,
     REQUEST_PROBLEM,

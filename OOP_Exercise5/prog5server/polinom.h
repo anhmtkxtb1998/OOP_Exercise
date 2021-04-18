@@ -3,12 +3,13 @@
 
 #include <QString>
 #include <cmath>
-#include "rational.h"
 
-enum EPrintMode{
+enum EPrintMode
+{
     EPrintModeClassic,
     EPrintModeCanonic,
 };
+
 template <class number>
 class Polinom
 {
@@ -22,6 +23,7 @@ public:
     template<class T>
     friend QString& operator <<(QString&, Polinom<T>&);
 };
+
 template <class number>
 Polinom<number>::Polinom(number a, number b, number c)
 {
@@ -30,16 +32,19 @@ Polinom<number>::Polinom(number a, number b, number c)
     this->b = b;
     this->c = c;
 }
+
 template <class number>
 void Polinom<number>::setPrintMode(EPrintMode mode)
 {
     printmode = mode;
 }
+
 template <class number>
 number Polinom<number>::value(number x)
 {
     return (a * x * x + b * x + c);
 }
+
 template <class number>
 int Polinom<number>::roots(number xroots[2])
 {
@@ -65,6 +70,7 @@ int Polinom<number>::roots(number xroots[2])
     }
     return 0;
 }
+
 template <class number>
 QString& operator <<(QString& s,Polinom<number>& p)
 {

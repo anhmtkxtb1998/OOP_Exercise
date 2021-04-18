@@ -25,7 +25,7 @@ SOURCES += main.cpp \
 
 HEADERS += \
     application.h \
+    polinom.h \
     ../common/communicator.h \
     ../common/common.h \
-    polinom.h \
     rational.h

@@ -40,7 +40,7 @@ void TParamwindow::ControlEvents()
     }
     if (btn == ui->btn2)
     {
-        TEvent msg(RESET);
+        TEvent msg(PARAM_RESET);
         msg.data.p.order = ui->s_order->value();
         emit sendParamEvent(msg);
     }

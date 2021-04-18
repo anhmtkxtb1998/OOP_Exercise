@@ -3,8 +3,8 @@
 
 TInterface::TInterface(QWidget *parent) : QWidget(parent)
 {
-    setWindowTitle("Работа №4");
-    setFixedSize(380,300);
+    setWindowTitle("Работа №5");
+    setFixedSize(400,300);
 
     name_a = new QLabel("a =",this);
     name_a->setGeometry(50,20,30,20);
@@ -31,7 +31,7 @@ TInterface::TInterface(QWidget *parent) : QWidget(parent)
     name_c = new QLabel("c =",this);
     name_c->setGeometry(50,100,30,20);
     numerator_c = new QLineEdit("1",this);
-    numerator_c ->setGeometry(110,100,50,20);
+    numerator_c->setGeometry(110,100,50,20);
     numerator_c->setValidator(new QIntValidator());
     delimeter_c = new QLabel(" / ",this);
     delimeter_c->setGeometry(180,100,30,20);
@@ -42,7 +42,7 @@ TInterface::TInterface(QWidget *parent) : QWidget(parent)
     name_x = new QLabel("x =",this);
     name_x->setGeometry(50,140,30,20);
     numerator_x = new QLineEdit("1",this);
-    numerator_x ->setGeometry(110,140,50,20);
+    numerator_x->setGeometry(110,140,50,20);
     numerator_x->setValidator(new QIntValidator());
     delimeter_x = new QLabel(" / ",this);
     delimeter_x->setGeometry(180,140,30,20);
@@ -59,19 +59,19 @@ TInterface::TInterface(QWidget *parent) : QWidget(parent)
     print_canonic_btn = new QPushButton("Canonic", this);
     print_canonic_btn->setGeometry(280,180,60,30);
 
-    i_button = new QRadioButton("Interger",this);
-    i_button->setGeometry(10, 230,120, 30);
-    r_button = new QRadioButton("Rational",this);
-    r_button->setGeometry(250, 230,120, 30);
-    i_button->setChecked(true);
-
+    i_button = new QRadioButton("Interger", this);
+    i_button->setGeometry(10,230,120, 30);
+    r_button = new QRadioButton("Rational", this);
+    r_button->setGeometry(250,230,130,30);
+    r_button->setChecked(true);
     output = new QLabel(this);
     output->setGeometry(10,270,380,30);
 
-    connect(value_btn,SIGNAL(pressed()),this,SLOT(formRequest()));
-    connect(root_btn,SIGNAL(pressed()),this,SLOT(formRequest()));
-    connect(print_classic_btn,SIGNAL(pressed()),this, SLOT(formRequest()));
-    connect(print_canonic_btn,SIGNAL(pressed()),this, SLOT(formRequest()));
+    connect(value_btn, SIGNAL(pressed()), this, SLOT(formRequest()));
+    connect(root_btn, SIGNAL(pressed()), this, SLOT(formRequest()));
+    connect(print_classic_btn, SIGNAL(pressed()), this, SLOT(formRequest()));
+    connect(print_canonic_btn, SIGNAL(pressed()), this, SLOT(formRequest()));
+    connect(i_button, SIGNAL(toggled(bool)), this, SLOT(intToggled(bool)));
 }
 
 TInterface::~TInterface()
@@ -91,19 +91,21 @@ TInterface::~TInterface()
     delete delimeter_c;
     delete denominator_c;
 
-    delete i_button;
-    delete r_button;
     delete output;
     delete value_btn;
     delete root_btn;
     delete print_classic_btn;
     delete print_canonic_btn;
+
+    delete i_button;
+    delete r_button;
 }
 
 void TInterface::formRequest()
 {
     QString msg;
-    if(i_button->isChecked()){
+    if (i_button->isChecked())
+    {
         msg << QString().setNum(I_MODE);
         msg << numerator_a->text();
         msg << numerator_b->text();
@@ -112,27 +114,27 @@ void TInterface::formRequest()
     }
     else
     {
-     msg << QString().setNum(R_MODE);
-    msg << numerator_a->text() << denominator_a->text();
-    msg << numerator_b->text() << denominator_b->text();
-    msg << numerator_c->text() << denominator_c->text();
+        msg << QString().setNum(R_MODE);
+        msg << numerator_a->text() << denominator_a->text();
+        msg << numerator_b->text() << denominator_b->text();
+        msg << numerator_c->text() << denominator_c->text();
     }
     QPushButton * btn = (QPushButton *) sender();
     if (btn == value_btn)
     {
-       msg << QString().setNum(VALUE_REQUEST);
-       if(i_button->isChecked())
-           msg << numerator_x->text();
-       else
-       msg << numerator_x->text() << denominator_x->text();
+        msg << QString().setNum(VALUE_REQUEST);
+        if (i_button->isChecked())
+           msg <<numerator_x->text();
+        else
+            msg <<numerator_x->text() << denominator_x->text();
     }
     else if (btn == root_btn)
-        msg << QString().setNum(ROOT_REQUEST);
+        msg << QString().setNum(ROOT_ANSWER);
     else if (btn == print_classic_btn)
         msg << QString().setNum(PRINT_CLASSIC_REQUEST);
     else if (btn == print_canonic_btn)
         msg << QString().setNum(PRINT_CANONIC_REQUEST);
-   emit request(msg);
+    emit request(msg);
 }
 
 void TInterface::answer(QString msg)
@@ -140,17 +142,19 @@ void TInterface::answer(QString msg)
     QString text;
     int p = msg.indexOf(separator);
     int t = msg.left(p).toInt();
-    msg = msg.mid(p+1, msg.length()-p-2);
+    msg = msg.mid(p + 1, msg.length() - p - 2);
     if (t == VALUE_ANSWER)
     {
-        text = "p(x) = ";
+        text = "p";
         p = msg.indexOf(separator);
-        text += msg.mid(p+1, msg.length()-p-1);
+        text+= msg.left(p);
+        text+= "=";
+        text += msg.mid(p + 1, msg.length()- p -1);
         output->setText(text);
     }
     else if (t == PRINT_ANSWER)
     {
-        text = "p(x) = ";
+//        text = "p(x) = ";
         text += msg;
         output->setText(text);
     }
@@ -159,7 +163,24 @@ void TInterface::answer(QString msg)
         text += msg;
         output->setText(text);
     }
-    else if(t == ERROR)
+    else if (t == ERROR)
         output->setText(msg);
+}
 
+void TInterface::intToggled(bool checked)
+{
+    if (checked)
+    {
+        denominator_a->setEnabled(false);
+        denominator_b->setEnabled(false);
+        denominator_c->setEnabled(false);
+        denominator_x->setEnabled(false);
+    }
+    else
+    {
+        denominator_a->setEnabled(true);
+        denominator_b->setEnabled(true);
+        denominator_c->setEnabled(true);
+        denominator_x->setEnabled(true);
+    }
 }

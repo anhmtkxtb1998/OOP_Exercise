@@ -14,8 +14,9 @@ enum messages
     ROOT_ANSWER,
     ERROR,
 };
-enum Modes{
-    I_MODE = 1,
+
+enum modes{
+    I_MODE =1,
     R_MODE,
 };
 
