@@ -25,13 +25,13 @@ public:
     bool isReady();
 
 signals:
-    void recieved(QByteArray);
+    void received(QByteArray);
 
 public slots:
     void send(QByteArray);
 
 private slots:
-    void recieve();
+    void receive();
 
 };
 

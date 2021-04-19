@@ -1,7 +1,7 @@
 #include "application.h"
 #include "polinom.h"
 #include "common.h"
-#include <rational.h>
+#include "rational.h"
 
 QByteArray& operator >>(QByteArray& s, int& c)
 {
@@ -21,14 +21,14 @@ QString& operator<<(QString& s, int c)
 
 TApplication::TApplication(int argc, char *argv[]) : QCoreApplication(argc,argv)
 {
-    TCommParams pars = { QHostAddress("127.0.0.1"), 10000,
-                         QHostAddress("127.0.0.1"), 10001};
+    TCommParams pars = {QHostAddress("127.0.0.1"), 10000,
+                        QHostAddress("127.0.0.1"), 10001};
     comm = new TCommunicator(pars, this);
 
-    connect(comm,SIGNAL(recieved(QByteArray)),this,SLOT(recieve(QByteArray)));
+    connect(comm,SIGNAL(received(QByteArray)),this,SLOT(receive(QByteArray)));
 }
 
-void TApplication::recieve(QByteArray msg)
+void TApplication::receive(QByteArray msg)
 {
     QString answer, s;
     int pos = msg.indexOf(separator);
@@ -86,7 +86,7 @@ void TApplication::recieve(QByteArray msg)
                     else
                     {
                         p.setPrintMode(EPrintModeClassic);
-                        s<< "p(x) = " << p;
+                        s << "p(x) = " << p;
                         answer<<QString().setNum(PRINT_ANSWER)<<s;
                     }
                 }
@@ -133,7 +133,7 @@ void TApplication::recieve(QByteArray msg)
                     }
                     else
                     {
-                        number roots[2];
+                        TRational roots[2];
                         int numroots = p.roots(roots);
                         if (numroots == 0)
                                 s += "The equation has no solutions!";
