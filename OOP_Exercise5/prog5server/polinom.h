@@ -2,10 +2,10 @@
 #define POLINOM_H
 
 #include <QString>
-#include<cmath>
-#include "number.h"
+#include <cmath>
 
-enum EPrintMode{
+enum EPrintMode
+{
     EPrintModeClassic,
     EPrintModeCanonic,
 };
@@ -14,16 +14,16 @@ template <class number>
 class Polinom
 {
     EPrintMode printmode;
-
     number a, b, c;
 public:
     Polinom(number, number, number);
     void setPrintMode(EPrintMode);
     number value(number);
     int roots(number[2]);
-    template<class T>
+    template <class T>
     friend QString& operator <<(QString&, Polinom<T>&);
 };
+
 template <class number>
 Polinom<number>::Polinom(number a, number b, number c)
 {
@@ -32,16 +32,19 @@ Polinom<number>::Polinom(number a, number b, number c)
     this->b = b;
     this->c = c;
 }
+
 template <class number>
 void Polinom<number>::setPrintMode(EPrintMode mode)
 {
     printmode = mode;
 }
+
 template <class number>
 number Polinom<number>::value(number x)
 {
     return (a * x * x + b * x + c);
 }
+
 template <class number>
 int Polinom<number>::roots(number xroots[2])
 {
@@ -67,8 +70,9 @@ int Polinom<number>::roots(number xroots[2])
     }
     return 0;
 }
-template <class number>
-QString& operator <<(QString& s,Polinom<number>& p)
+
+template <class T>
+QString& operator <<(QString& s,Polinom<T>& p)
 {
     if (p.printmode == EPrintModeClassic)
     {
@@ -81,16 +85,16 @@ QString& operator <<(QString& s,Polinom<number>& p)
     }
     else
     {
-        number x0 = -p.b/(2*p.a);
+        T x0 = -p.b/(2*p.a);
         if (x0 * 2 * p.a == -p.b)
         {
-            number y0 = p.value(x0);
+            T y0 = p.value(x0);
 
             s << p.a;
             s += "(x " + QString(x0 < 0 ? "+ " : "- ");
             s << std::abs(x0);
             s += ")^2 " + QString(y0 < 0 ? "- " : "+ ");
-            s << std::abs(y0) ;
+            s << std::abs(y0);
         }
         else
         {

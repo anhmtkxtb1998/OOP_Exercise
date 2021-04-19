@@ -7,7 +7,7 @@
 #include <QPushButton>
 #include <QString>
 #include <QValidator>
-#include<QRadioButton>
+#include <QRadioButton>
 
 class TInterface : public QWidget
 {
@@ -42,6 +42,7 @@ public slots:
 
 private slots:
     void formRequest();
+    void intToggled(bool);
 
 signals:
     void request(QString);

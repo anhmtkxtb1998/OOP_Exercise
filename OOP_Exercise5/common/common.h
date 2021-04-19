@@ -10,9 +10,11 @@ enum messages
     PRINT_CLASSIC_REQUEST,
     PRINT_CANONIC_REQUEST,
     PRINT_ANSWER,
+    ROOT_REQUEST,
     ROOT_ANSWER,
     ERROR,
 };
+
 enum modes{
     I_MODE =1,
     R_MODE,

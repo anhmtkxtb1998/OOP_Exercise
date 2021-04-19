@@ -32,11 +32,11 @@ struct qt_meta_stringdata_TApplication_t {
 static const qt_meta_stringdata_TApplication_t qt_meta_stringdata_TApplication = {
     {
 QT_MOC_LITERAL(0, 0, 12), // "TApplication"
-QT_MOC_LITERAL(1, 13, 7), // "receive"
+QT_MOC_LITERAL(1, 13, 7), // "recieve"
 QT_MOC_LITERAL(2, 21, 0) // ""
 
     },
-    "TApplication\0receive\0"
+    "TApplication\0recieve\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -68,7 +68,7 @@ void TApplication::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         auto *_t = static_cast<TApplication *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->receive((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
+        case 0: _t->recieve((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
         default: ;
         }
     }
