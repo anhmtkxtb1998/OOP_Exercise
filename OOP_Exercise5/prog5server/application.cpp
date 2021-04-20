@@ -1,7 +1,7 @@
 #include "application.h"
+#include "rational.h"
 #include "polinom.h"
 #include "common.h"
-#include "rational.h"
 
 QByteArray& operator >>(QByteArray& s, int& c)
 {
@@ -47,8 +47,9 @@ void TApplication::receive(QByteArray msg)
             {
                 msg = msg.right(msg.length()-pos-1);
                 msg >> x;
-                if (a.get_value_b() == 0 | b.get_value_b() == 0 | c.get_value_b() == 0 | x.get_value_b() == 0){
-                    s+= "Deminator can't be 0.Reenter";
+                if (a.get_value_b() == 0 || b.get_value_b() == 0 || c.get_value_b() == 0 || x.get_value_b() == 0)
+                {
+                    s+= "Denominator cant be 0. Reenter.";
                     answer << QString().setNum(ERROR) << s;
                 }
                 else
@@ -61,8 +62,8 @@ void TApplication::receive(QByteArray msg)
                     else
                     {
                         v = p.value(x);
-                        s<<(QString)x<<(QString)v;
-                        answer<<QString().setNum(VALUE_ANSWER);
+                        s << (QString)x << (QString)v;
+                        answer << QString().setNum(VALUE_ANSWER);
                         answer += s;
                     }
                 }
@@ -71,9 +72,9 @@ void TApplication::receive(QByteArray msg)
 
             case PRINT_CLASSIC_REQUEST:
             {
-                if (a.get_value_b() ==0 | b.get_value_b() == 0 | c.get_value_b() == 0| x.get_value_b() == 0)
+                if (a.get_value_b() ==0 || b.get_value_b() == 0 || c.get_value_b() == 0)
                 {
-                    s+= "Deminator can't be 0.Reenter";
+                    s+= "Denominator cant be 0. Reenter.";
                     answer << QString().setNum(ERROR) << s;
                 }
                 else
@@ -86,7 +87,8 @@ void TApplication::receive(QByteArray msg)
                     else
                     {
                         p.setPrintMode(EPrintModeClassic);
-                        s << "p(x) = " << p;
+                        s += "p(x) = ";
+                        s << p;
                         answer<<QString().setNum(PRINT_ANSWER)<<s;
                     }
                 }
@@ -95,9 +97,9 @@ void TApplication::receive(QByteArray msg)
 
             case PRINT_CANONIC_REQUEST:
             {
-                if (a.get_value_b() ==0 | b.get_value_b() == 0 | c.get_value_b() == 0| x.get_value_b() == 0)
+                if (a.get_value_b() ==0 || b.get_value_b() == 0 || c.get_value_b() == 0)
                 {
-                    s+= "Deminator can't be 0.Reenter";
+                    s+= "Denominator cant be 0. Reenter.";
                     answer << QString().setNum(ERROR) << s;
                 }
                 else
@@ -110,18 +112,19 @@ void TApplication::receive(QByteArray msg)
                     else
                     {
                         p.setPrintMode(EPrintModeCanonic);
-                        s << "p(x) = " << p;
+                        s += "p(x) = ";
+                        s << p;
                         answer<<QString().setNum(PRINT_ANSWER)<<s;
                     }
                 }
             }
                 break;
 
-            case ROOT_ANSWER:
+            case ROOT_REQUEST:
             {
-                if(a.get_value_b() ==0 | b.get_value_b() == 0 | c.get_value_b() == 0| x.get_value_b() == 0)
+                if (a.get_value_b() ==0 || b.get_value_b() == 0 || c.get_value_b() == 0)
                 {
-                    s+= "Deminator can't be 0.Reenter";
+                    s+= "Denominator cant be 0. Reenter.";
                     answer << QString().setNum(ERROR) << s;
                 }
                 else
@@ -183,7 +186,7 @@ void TApplication::receive(QByteArray msg)
                 else
                 {
                     v = p.value(x);
-                    s += "(" +QString().setNum(x) +")" + separator;s << QString().setNum(v);
+                    s << QString().setNum(x) << QString().setNum(v);
                     answer << QString().setNum(VALUE_ANSWER);
                     answer += s;
                 }
@@ -200,6 +203,7 @@ void TApplication::receive(QByteArray msg)
                 else
                 {
                     p.setPrintMode(EPrintModeClassic);
+                    s += "p(x) = ";
                     s << p;
                     answer << QString().setNum(PRINT_ANSWER)<<s;
                 }
@@ -217,14 +221,19 @@ void TApplication::receive(QByteArray msg)
                 {
                     p.setPrintMode(EPrintModeCanonic);
                     s << p;
-                    answer << QString().setNum(PRINT_ANSWER)<<s;
+                    answer << QString().setNum(PRINT_ANSWER);
+                    if (s != "Cannot output canonic form because x0 = -b/(2*a) does not belong to type 'number'")
+                    {
+                        answer += "p(x) = ";
+                    }
+                    answer << s;
                 }
             }
             break;
 
-            case ROOT_ANSWER:
+            case ROOT_REQUEST:
             {
-                if(a == 0)
+                if (a == 0)
                 {
                     s += "Value of 'a' cant be 0! Reenter coefficients!";
                     answer << QString().setNum(ERROR) << s;
