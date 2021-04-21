@@ -4,7 +4,7 @@
 TInterface::TInterface(QWidget *parent) : QWidget(parent)
 {
     setWindowTitle("Работа №5");
-    setFixedSize(400,300);
+    setFixedSize(450,300);
 
     name_a = new QLabel("a =",this);
     name_a->setGeometry(50,20,30,20);
@@ -65,7 +65,7 @@ TInterface::TInterface(QWidget *parent) : QWidget(parent)
     r_button->setGeometry(250,230,130,30);
     r_button->setChecked(true);
     output = new QLabel(this);
-    output->setGeometry(10,270,380,30);
+    output->setGeometry(10,270,430,30);
 
     connect(value_btn, SIGNAL(pressed()), this, SLOT(formRequest()));
     connect(root_btn, SIGNAL(pressed()), this, SLOT(formRequest()));
@@ -124,12 +124,12 @@ void TInterface::formRequest()
     {
         msg << QString().setNum(VALUE_REQUEST);
         if (i_button->isChecked())
-           msg <<numerator_x->text();
+            msg <<numerator_x->text();
         else
             msg <<numerator_x->text() << denominator_x->text();
     }
     else if (btn == root_btn)
-        msg << QString().setNum(ROOT_ANSWER);
+        msg << QString().setNum(ROOT_REQUEST);
     else if (btn == print_classic_btn)
         msg << QString().setNum(PRINT_CLASSIC_REQUEST);
     else if (btn == print_canonic_btn)
@@ -145,10 +145,10 @@ void TInterface::answer(QString msg)
     msg = msg.mid(p + 1, msg.length() - p - 2);
     if (t == VALUE_ANSWER)
     {
-        text = "p";
+        text = "p(";
         p = msg.indexOf(separator);
         text+= msg.left(p);
-        text+= "=";
+        text+= ") = ";
         text += msg.mid(p + 1, msg.length()- p -1);
         output->setText(text);
     }

@@ -1,5 +1,4 @@
 #include "application.h"
-#include<QDebug>
 
 TApplication::TApplication(int argc, char *argv[]) : QApplication(argc,argv)
 {
