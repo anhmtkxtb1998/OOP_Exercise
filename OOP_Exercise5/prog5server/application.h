@@ -15,8 +15,6 @@ public:
 
     TApplication(int, char**);
 
-signals:
-
 public slots:
 
     void receive(QByteArray);
