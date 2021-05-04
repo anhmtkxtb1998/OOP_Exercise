@@ -1,9 +1,7 @@
 #ifndef TGRAPH_H
 #define TGRAPH_H
 
-#include <QPainter>
-#include<QObject>
-#include<QVector>
+#include <QObject>
 #include "matrix.h"
 
 class TGraph
@@ -13,9 +11,10 @@ class TGraph
 public:
     TGraph(int, TMatrix);
     ~TGraph();
-    void draw(QPainter*,QRect,QColor);
-    void setMatrix(TMatrix);
+    int getCount();
     void setCount(int);
+    TMatrix getMatrix();
+    void setMatrix(TMatrix);
 };
 
 #endif // TGRAPH_H

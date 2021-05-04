@@ -2,32 +2,32 @@
 
 TInterface::TInterface(QWidget * parent) : QWidget(parent)
 {
-  setWindowTitle("Работа №6");
-  setFixedSize(300, 300);
-  canvas = nullptr;
-  g = nullptr;
-  lb_size = new QLabel(this);
-  lb_size->setText("Число вершин: ");
-  lb_size->setGeometry(10, 20, 130, 30);
-  size_ = new QSpinBox(this);
-  size_->setGeometry(150, 20, 130,30);
-  size_->setMinimum(1);
-  lb_matrix = new QLabel(this);
-  lb_matrix->setText("Матрица смежности");
-  lb_matrix->setGeometry(10, 70, 130, 30);
-  btn_matrix = new QPushButton(this);
-  btn_matrix->setText("Выбирай файл");
-  btn_matrix->setGeometry(150, 70, 130,30);
-  btn_show = new QPushButton(this);
-  btn_show->setText("Отображение графа");
-  btn_show->setGeometry(10,120,280,30);
+    setWindowTitle("Работа №6");
+    setFixedSize(300, 300);
+    canvas = nullptr;
+    g = nullptr;
+    lb_size = new QLabel(this);
+    lb_size->setText("Число вершин: ");
+    lb_size->setGeometry(10, 20, 130, 30);
+    size_ = new QSpinBox(this);
+    size_->setGeometry(150, 20, 130,30);
+    size_->setMinimum(1);
+    lb_matrix = new QLabel(this);
+    lb_matrix->setText("Матрица смежности");
+    lb_matrix->setGeometry(10, 70, 130, 30);
+    btn_matrix = new QPushButton(this);
+    btn_matrix->setText("Выберите файл");
+    btn_matrix->setGeometry(150, 70, 130,30);
+    btn_show = new QPushButton(this);
+    btn_show->setText("Отображение графа");
+    btn_show->setGeometry(10,120,280,30);
 
-  connect(btn_matrix, SIGNAL(pressed()), this, SLOT(OpenFile()));
-  connect(btn_show, SIGNAL(pressed()), this, SLOT(OpenCanvas()));
-
+    connect(btn_matrix, SIGNAL(pressed()), this, SLOT(OpenFile()));
+    connect(btn_show, SIGNAL(pressed()), this, SLOT(OpenCanvas()));
 }
 
-TInterface::~TInterface(){
+TInterface::~TInterface()
+{
     delete lb_matrix;
     delete size_;
     delete lb_size;
@@ -35,17 +35,21 @@ TInterface::~TInterface(){
     delete btn_show;
     delete canvas;
 }
-void TInterface::closeEvent(QCloseEvent * event){
-    if(canvas != nullptr){
+
+void TInterface::closeEvent(QCloseEvent * event)
+{
+    if(canvas != nullptr)
+    {
         disconnect(canvas, SIGNAL(closing()),this,SLOT(CloseCanvas()));
         disconnect(this,SIGNAL(ChangeGraph(TGraph *)), canvas, SLOT(SetGraph(TGraph *)));
         canvas->close();
     }
     event->accept();
 }
+
 void TInterface::OpenFile()
 {
-    QString file_name = QFileDialog::getOpenFileName(this,"Open source file", QDir::homePath());
+    QString file_name = QFileDialog::getOpenFileName(this,"Open source file");
     QFile file(file_name);
     if(!file.open(QFile::ReadOnly| QFile::Text))
     {
@@ -78,10 +82,10 @@ void TInterface::OpenFile()
                     QMessageBox::warning(this,"Source file error","Matrix size must correspond to the parameter selected!");
                 }
             }
-            if(flag == false)
+            if (flag == false)
                 break;
         }
-        if( flag == true)
+        if (flag == true)
         {
             TMatrix tmp(matrixsize, matrixsize,matrix);
             if(tmp.Is_Adjacency_Matrix())
@@ -98,14 +102,13 @@ void TInterface::OpenFile()
                 emit ChangeGraph(g);
             }
             else
-               QMessageBox::warning(this,"Source file error", "The data for the matrix is not correct");
+                QMessageBox::warning(this,"Source file error", "The data for the matrix is not correct");
         }
-
-
     }
-
 }
-void TInterface::OpenCanvas(){
+
+void TInterface::OpenCanvas()
+{
 
     if(canvas == nullptr)
     {
@@ -121,7 +124,9 @@ void TInterface::OpenCanvas(){
     }
 
 }
-void TInterface::CloseCanvas(){
+
+void TInterface::CloseCanvas()
+{
     disconnect(canvas, SIGNAL(closing()),this,SLOT(CloseCanvas()));
     canvas = nullptr;
 }
