@@ -13,8 +13,8 @@ namespace std
 class TRational
 {
     int a, b;
-    int gcd(int, int);
     static QChar SEPARATOR;
+    int gcd(int, int);
     void compact();
 
 public:
