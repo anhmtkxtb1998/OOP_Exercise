@@ -2,7 +2,7 @@
 #define TCANVAS_H
 
 #include <QWidget>
-#include<QCloseEvent>
+#include <QCloseEvent>
 #include "graph.h"
 
 class TCanvas : public QWidget
