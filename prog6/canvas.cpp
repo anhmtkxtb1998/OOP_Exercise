@@ -58,7 +58,7 @@ void TCanvas::paintEvent(QPaintEvent*)
     {
         for (int j=0; j<count; j++)
         {
-            if (i != j && g->getMatrix().Get()[i][j] == 1)
+            if (g->getMatrix().Get()[i][j] == 1)
             {
                 QLineF line(t[i].center(), t[j].center());
                 double angle = atan2(-line.dy(), line.dx());

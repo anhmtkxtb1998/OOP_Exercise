@@ -9,6 +9,7 @@
 #include<QLabel>
 #include<QMessageBox>
 #include<QTextStream>
+#include<QDebug>
 #include "canvas.h"
 
 class TInterface: public QWidget
