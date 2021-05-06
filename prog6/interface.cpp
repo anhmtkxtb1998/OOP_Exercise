@@ -24,8 +24,6 @@ TInterface::TInterface(QWidget * parent) : QWidget(parent)
 TInterface::~TInterface()
 {
     delete lb_matrix;
-    delete size_;
-    delete lb_size;
     delete btn_matrix;
     delete btn_show;
     delete canvas;
@@ -55,7 +53,7 @@ void TInterface::OpenFile()
         QTextStream data(&file);
         QVector< QVector<qint16> > matrix;
         bool flag = true;
-        int matrixsize;
+        int matrixsize = 0;
 
         if (!data.atEnd())
         {
@@ -120,7 +118,7 @@ void TInterface::OpenFile()
             {
                 if(g == nullptr)
                 {
-                   g = new TGraph(matrixsize, tmp);
+                   g = new TGraph(tmp);
                 }
                 else
                 {

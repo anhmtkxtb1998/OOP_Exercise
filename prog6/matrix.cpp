@@ -25,6 +25,16 @@ TMatrix::~TMatrix()
 
 }
 
+int TMatrix::getX()
+{
+    return x;
+}
+
+int TMatrix::getY()
+{
+    return y;
+}
+
 qint16 TMatrix::at(int i, int j)
 {
     return this->Matrix[i][j];

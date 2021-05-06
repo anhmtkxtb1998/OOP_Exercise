@@ -9,7 +9,7 @@ class TGraph
     int count;
     TMatrix matrix;
 public:
-    TGraph(int, TMatrix);
+    TGraph(TMatrix);
     ~TGraph();
     int getCount();
     void setCount(int);

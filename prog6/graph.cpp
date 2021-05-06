@@ -1,9 +1,9 @@
 #include "graph.h"
 
-TGraph::TGraph(int n, TMatrix m)
+TGraph::TGraph(TMatrix m)
 {
-    count = n;
     matrix = m;
+    count = m.getX();
 }
 
 TGraph::~TGraph()
