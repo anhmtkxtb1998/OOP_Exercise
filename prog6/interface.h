@@ -11,6 +11,7 @@
 #include <QTextStream>
 #include <QDebug>
 #include "canvas.h"
+#include "graph.h"
 
 class TInterface: public QWidget
 {

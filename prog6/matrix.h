@@ -1,7 +1,7 @@
 #ifndef TMATRIX_H
 #define TMATRIX_H
-#include<QObject>
-#include<QVector>
+
+#include <QVector>
 
 class TMatrix
 {

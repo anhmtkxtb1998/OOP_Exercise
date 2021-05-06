@@ -1,7 +1,6 @@
 #include "canvas.h"
 #include <QPainter>
 #include <math.h>
-#include <QDebug>
 #include <QVector>
 
 TCanvas::TCanvas(TGraph *f, QWidget *parent) : QWidget(parent)
@@ -25,7 +24,7 @@ void TCanvas::paintEvent(QPaintEvent*)
     qreal cw = 0.5*rect().width();
     qreal ch = 0.5*rect().height();
     qreal cr = 0.9*(cw>ch?ch:cw);
-    qreal a = 2.0*acos(-1.0)/count;
+    qreal a = 2.0*M_PI/count;
 
     qreal rad = 0.05*(cw>ch?ch:cw);
     qreal arrowSize = 0.8*rad;

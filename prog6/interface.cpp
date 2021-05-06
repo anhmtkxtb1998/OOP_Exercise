@@ -46,7 +46,7 @@ void TInterface::OpenFile()
     QFile file(file_name);
     if(!file.open(QFile::ReadOnly | QFile::Text))
     {
-        QMessageBox::warning(this, "Сообщение", "Не удалось открыть файл");
+        QMessageBox::warning(this, "Сообщение", "Файл не был открыт");
     }
     else
     {
@@ -64,8 +64,6 @@ void TInterface::OpenFile()
             QVector<qint16> tmp;
             for(int i = 0;i < matrixsize;i++)
             {
-                qDebug() << NumList[i];
-                qDebug() << NumList[i].toInt();
                 if (NumList[i] != "1" && NumList[i] != "0")
                 {
                     flag = false;
@@ -91,8 +89,6 @@ void TInterface::OpenFile()
                             QVector<qint16> tmp;
                             for(int i = 0;i < matrixsize;i++)
                             {
-                                qDebug() << NumList[i];
-                                qDebug() << NumList[i].toInt();
                                 if (NumList[i] != "1" && NumList[i] != "0")
                                 {
                                     flag = false;
@@ -165,6 +161,7 @@ void TInterface::OpenCanvas()
             canvas = new TCanvas(g);
             connect(canvas, SIGNAL(closing()),this,SLOT(CloseCanvas()));
             connect(this,SIGNAL(ChangeGraph(TGraph *)), canvas, SLOT(ChangeGraph(TGraph *)));
+            canvas->setWindowTitle("Ориентированный граф");
             canvas->show();
         }
         else

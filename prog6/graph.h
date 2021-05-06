@@ -1,7 +1,6 @@
 #ifndef TGRAPH_H
 #define TGRAPH_H
 
-#include <QObject>
 #include "matrix.h"
 
 class TGraph
