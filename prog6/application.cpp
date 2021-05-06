@@ -2,8 +2,8 @@
 
 TApplication::TApplication(int argc, char ** argv) : QApplication(argc, argv)
 {
- interface = new TInterface();
- interface->show();
+    interface = new TInterface();
+    interface->show();
 }
 
 TApplication::~TApplication(){
