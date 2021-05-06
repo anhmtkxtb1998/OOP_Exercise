@@ -1,7 +1,9 @@
-#include "application.h"
-
+#include<QApplication>
+#include "interface.h"
 int main(int argc, char *argv[])
 {
-    TApplication a(argc, argv);
+    QApplication a(argc, argv);
+    TInterface interface;
+    interface.show();
     return a.exec();
 }

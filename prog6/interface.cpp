@@ -172,6 +172,5 @@ void TInterface::CloseCanvas()
 {
     disconnect(canvas, SIGNAL(closing()), this, SLOT(CloseCanvas()));
     disconnect(this, SIGNAL(ChangeGraph(TGraph)), canvas, SLOT(ChangeGraph(TGraph)));
-    delete canvas;
     canvas = nullptr;
 }
