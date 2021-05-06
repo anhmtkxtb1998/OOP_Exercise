@@ -2,15 +2,15 @@
 #include <QPainter>
 #include <math.h>
 
-TCanvas::TCanvas(TGraph *f, QWidget *parent) : QWidget(parent)
+TCanvas::TCanvas(TGraph f, QWidget *parent) : QWidget(parent)
 {
-    g = f;
+    g = new TGraph(f);
     setFixedSize(400,400);
 }
 
 TCanvas::~TCanvas()
 {
-
+    delete g;
 }
 
 void TCanvas::paintEvent(QPaintEvent*)
@@ -124,8 +124,8 @@ void TCanvas::closeEvent(QCloseEvent* event)
     event->accept();
 }
 
-void TCanvas::ChangeGraph(TGraph * t)
+void TCanvas::ChangeGraph(TGraph t)
 {
-    g = t;
+    *g = t;
     this->repaint();
 }

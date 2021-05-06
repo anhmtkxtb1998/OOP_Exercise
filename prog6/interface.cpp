@@ -134,7 +134,7 @@ void TInterface::OpenFile()
                             g->setCount(matrixsize);
                             g->setMatrix(tmp);
                         }
-                        emit ChangeGraph(g);
+                        emit ChangeGraph(*g);
                     }
                     else
                         QMessageBox::warning(this, "Неправильный формат файла", "Файл не содержит матрицу смежности!");
@@ -157,9 +157,9 @@ void TInterface::OpenCanvas()
     {
         if(g != nullptr)
         {
-            canvas = new TCanvas(g);
+            canvas = new TCanvas(*g);
             connect(canvas, SIGNAL(closing()),this,SLOT(CloseCanvas()));
-            connect(this,SIGNAL(ChangeGraph(TGraph *)), canvas, SLOT(ChangeGraph(TGraph *)));
+            connect(this,SIGNAL(ChangeGraph(TGraph)), canvas, SLOT(ChangeGraph(TGraph)));
             canvas->setWindowTitle("Ориентированный граф");
             canvas->show();
         }
@@ -171,7 +171,7 @@ void TInterface::OpenCanvas()
 void TInterface::CloseCanvas()
 {
     disconnect(canvas, SIGNAL(closing()), this, SLOT(CloseCanvas()));
-    disconnect(this, SIGNAL(ChangeGraph(TGraph *)), canvas, SLOT(ChangeGraph(TGraph *)));
+    disconnect(this, SIGNAL(ChangeGraph(TGraph)), canvas, SLOT(ChangeGraph(TGraph)));
     delete canvas;
     canvas = nullptr;
 }

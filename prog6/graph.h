@@ -9,6 +9,7 @@ class TGraph
     TMatrix matrix;
 public:
     TGraph(TMatrix);
+    TGraph(TGraph&);
     ~TGraph();
     int getCount();
     void setCount(int);

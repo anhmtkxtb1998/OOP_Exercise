@@ -16,7 +16,7 @@ class TInterface: public QWidget
 {
     Q_OBJECT
     TCanvas * canvas;
-    TGraph * g;
+    TGraph *g;
     QLabel * lb_matrix;
     QPushButton * btn_matrix;
     QPushButton * btn_show;
@@ -32,7 +32,7 @@ private slots:
 public slots:
     void CloseCanvas();
 signals:
-    void ChangeGraph(TGraph *);
+    void ChangeGraph(TGraph);
 };
 
 #endif // TINTERFACE_H
