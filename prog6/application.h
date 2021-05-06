@@ -1,7 +1,7 @@
 #ifndef TAPPLICATION_H
 #define TAPPLICATION_H
 
-#include<QApplication>
+#include <QApplication>
 #include "interface.h"
 
 class TApplication : public QApplication

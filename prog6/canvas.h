@@ -11,10 +11,10 @@ class TCanvas : public QWidget
 
     TGraph *g;
 public:
-    TCanvas(TGraph *, QWidget *parent = 0);
+    TCanvas(TGraph, QWidget *parent = 0);
     ~TCanvas();
 public slots:
-    void ChangeGraph(TGraph *);
+    void ChangeGraph(TGraph);
 protected:
     void paintEvent(QPaintEvent *);
     void closeEvent(QCloseEvent*);

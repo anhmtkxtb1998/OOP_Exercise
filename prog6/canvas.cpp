@@ -1,18 +1,16 @@
 #include "canvas.h"
 #include <QPainter>
 #include <math.h>
-#include <QDebug>
-#include <QVector>
 
-TCanvas::TCanvas(TGraph *f, QWidget *parent) : QWidget(parent)
+TCanvas::TCanvas(TGraph f, QWidget *parent) : QWidget(parent)
 {
-    g = f;
+    g = new TGraph(f);
     setFixedSize(400,400);
 }
 
 TCanvas::~TCanvas()
 {
-
+    delete g;
 }
 
 void TCanvas::paintEvent(QPaintEvent*)
@@ -25,7 +23,7 @@ void TCanvas::paintEvent(QPaintEvent*)
     qreal cw = 0.5*rect().width();
     qreal ch = 0.5*rect().height();
     qreal cr = 0.9*(cw>ch?ch:cw);
-    qreal a = 2.0*acos(-1.0)/count;
+    qreal a = 2.0*M_PI/count;
 
     qreal rad = 0.05*(cw>ch?ch:cw);
     qreal arrowSize = 0.8*rad;
@@ -65,12 +63,6 @@ void TCanvas::paintEvent(QPaintEvent*)
                     qreal l = (rad*rad - r0*r0 + d*d)/(2*d);
                     qreal h = sqrt(rad*rad - l*l);
                     QPointF p2 = t[i].center() + l*(p1-t[i].center())/d;
-
-                    qDebug() << d;
-                    qDebug() << l;
-                    qDebug() << h;
-
-                    qDebug() << p2.rx() + h*(p1.ry()-t[i].center().ry())/d << p2.ry() - h*(p1.rx()-t[i].center().rx())/d;
 
                     QPointF o = QPointF(p2.rx() + h*(p1.ry()-t[i].center().ry())/d, p2.ry() - h*(p1.rx()-t[i].center().rx())/d);
 
@@ -132,8 +124,8 @@ void TCanvas::closeEvent(QCloseEvent* event)
     event->accept();
 }
 
-void TCanvas::ChangeGraph(TGraph * t)
+void TCanvas::ChangeGraph(TGraph t)
 {
-    g = t;
+    *g = t;
     this->repaint();
 }

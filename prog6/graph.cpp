@@ -6,6 +6,12 @@ TGraph::TGraph(TMatrix m)
     count = m.getX();
 }
 
+TGraph::TGraph(TGraph &t)
+{
+    matrix = t.getMatrix();
+    count = t.getCount();
+}
+
 TGraph::~TGraph()
 {
 

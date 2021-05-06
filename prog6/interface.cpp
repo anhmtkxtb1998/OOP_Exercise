@@ -23,6 +23,7 @@ TInterface::TInterface(QWidget * parent) : QWidget(parent)
 
 TInterface::~TInterface()
 {
+    delete g;
     delete lb_matrix;
     delete btn_matrix;
     delete btn_show;
@@ -33,8 +34,6 @@ void TInterface::closeEvent(QCloseEvent * event)
 {
     if(canvas != nullptr)
     {
-        disconnect(canvas, SIGNAL(closing()),this,SLOT(CloseCanvas()));
-        disconnect(this,SIGNAL(ChangeGraph(TGraph *)), canvas, SLOT(SetGraph(TGraph *)));
         canvas->close();
     }
     event->accept();
@@ -46,7 +45,7 @@ void TInterface::OpenFile()
     QFile file(file_name);
     if(!file.open(QFile::ReadOnly | QFile::Text))
     {
-        QMessageBox::warning(this,"Message", "Файл не был открыт");
+        QMessageBox::warning(this, "Сообщение", "Файл не был открыт");
     }
     else
     {
@@ -64,72 +63,90 @@ void TInterface::OpenFile()
             QVector<qint16> tmp;
             for(int i = 0;i < matrixsize;i++)
             {
-                tmp.push_back(NumList[i].toInt());
+                if (NumList[i] != "1" && NumList[i] != "0")
+                {
+                    flag = false;
+                    QMessageBox::warning(this, "Неправильный формат файла", "Элементами матрицы смежности могут быть только символы '0' и '1'!");
+                }
+                else
+                    tmp.push_back(NumList[i].toInt());
             }
             matrix.push_back(tmp);
+
+            if (flag == true)
+            {
+                for (int i=1; i<matrixsize; i++)
+                {
+                    if(!data.atEnd())
+                    {
+                        QString line = data.readLine();
+
+                        line = line.trimmed();
+                        QStringList NumList = line.split(" ");
+                        if(NumList.size() == matrixsize)
+                        {
+                            QVector<qint16> tmp;
+                            for(int i = 0;i < matrixsize;i++)
+                            {
+                                if (NumList[i] != "1" && NumList[i] != "0")
+                                {
+                                    flag = false;
+                                    QMessageBox::warning(this, "Неправильный формат файла", "Элементами матрицы смежности могут быть только символы '0' и '1'!");
+                                    break;
+                                }
+                                else
+                                    tmp.push_back(NumList[i].toInt());
+                            }
+                            matrix.push_back(tmp);
+                        }
+                        else
+                        {
+                            flag = false;
+                            QMessageBox::warning(this, "Неправильный формат файла", "Матрица смежности должна быть квадратной!");
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        flag = false;
+                        QMessageBox::warning(this, "Неправильный формат файла", "Матрица смежности должна быть квадратной!");
+                        break;
+                    }
+                }
+
+                if(!data.atEnd() && flag == true)
+                {
+                    flag = false;
+                    QMessageBox::warning(this, "Неправильный формат файла", "Матрица смежности должна быть квадратной!");
+                }
+
+                if (flag == true)
+                {
+                    TMatrix tmp(matrix.size(), matrixsize, matrix);
+                    if(tmp.Is_Adjacency_Matrix())
+                    {
+                        if(g == nullptr)
+                        {
+                            g = new TGraph(tmp);
+                        }
+                        else
+                        {
+                            g->setCount(matrixsize);
+                            g->setMatrix(tmp);
+                        }
+                        emit ChangeGraph(*g);
+                    }
+                    else
+                        QMessageBox::warning(this, "Неправильный формат файла", "Файл не содержит матрицу смежности!");
+                }
+            }
         }
         else
         {
-            QMessageBox::warning(this,"Message", "Пустой файл");
-        }
-
-        for (int i=1; i<matrixsize; i++)
-        {
-            if(!data.atEnd())
-            {
-                QString line = data.readLine();
-
-                line = line.trimmed();
-                QStringList NumList = line.split(" ");
-                if(NumList.size() == matrixsize)
-                {
-                    QVector<qint16> tmp;
-                    for(int i = 0;i < matrixsize;i++)
-                    {
-                        tmp.push_back(NumList[i].toInt());
-                    }
-                    matrix.push_back(tmp);
-                }
-                else
-                {
-                    flag = false;
-                    QMessageBox::warning(this,"Source file error","Matrix size must correspond to the parameter selected!");
-                    break;
-                }
-            }
-            else
-            {
-                flag = false;
-                QMessageBox::warning(this,"Source file error","Matrix size must correspond to the parameter selected!");
-                break;
-            }
-        }
-
-        if(!data.atEnd())
-        {
             flag = false;
-            QMessageBox::warning(this,"Source file error","Matrix size must correspond to the parameter selected!");
+            QMessageBox::warning(this, "Сообщение", "Пустой файл");
         }
 
-        if (flag == true)
-        {
-            TMatrix tmp(matrix.size(), matrixsize, matrix);
-            if(tmp.Is_Adjacency_Matrix())
-            {
-                if(g == nullptr)
-                {
-                   g = new TGraph(tmp);
-                }
-                else
-                {
-                    g->setCount(matrixsize);
-                    g->setMatrix(tmp);
-                }
-                emit ChangeGraph(g);
-            }
-            else
-                QMessageBox::warning(this, "Source file error", "The data for the matrix is not correct");
-        }
         file.close();
     }
 }
@@ -140,19 +157,21 @@ void TInterface::OpenCanvas()
     {
         if(g != nullptr)
         {
-            canvas = new TCanvas(g);
+            canvas = new TCanvas(*g);
             connect(canvas, SIGNAL(closing()),this,SLOT(CloseCanvas()));
-            connect(this,SIGNAL(ChangeGraph(TGraph *)), canvas, SLOT(ChangeGraph(TGraph *)));
+            connect(this,SIGNAL(ChangeGraph(TGraph)), canvas, SLOT(ChangeGraph(TGraph)));
+            canvas->setWindowTitle("Ориентированный граф");
             canvas->show();
         }
         else
-            QMessageBox::warning(this, "Message", "Файл не выбран");
+            QMessageBox::warning(this, "Сообщение", "Файл не выбран");
     }
-
 }
 
 void TInterface::CloseCanvas()
 {
-    disconnect(canvas, SIGNAL(closing()),this,SLOT(CloseCanvas()));
+    disconnect(canvas, SIGNAL(closing()), this, SLOT(CloseCanvas()));
+    disconnect(this, SIGNAL(ChangeGraph(TGraph)), canvas, SLOT(ChangeGraph(TGraph)));
+    delete canvas;
     canvas = nullptr;
 }

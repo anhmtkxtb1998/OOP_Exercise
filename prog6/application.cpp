@@ -6,6 +6,7 @@ TApplication::TApplication(int argc, char ** argv) : QApplication(argc, argv)
     interface->show();
 }
 
-TApplication::~TApplication(){
+TApplication::~TApplication()
+{
     delete interface;
 }
