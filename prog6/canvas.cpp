@@ -66,12 +66,6 @@ void TCanvas::paintEvent(QPaintEvent*)
                     qreal h = sqrt(rad*rad - l*l);
                     QPointF p2 = t[i].center() + l*(p1-t[i].center())/d;
 
-                    qDebug() << d;
-                    qDebug() << l;
-                    qDebug() << h;
-
-                    qDebug() << p2.rx() + h*(p1.ry()-t[i].center().ry())/d << p2.ry() - h*(p1.rx()-t[i].center().rx())/d;
-
                     QPointF o = QPointF(p2.rx() + h*(p1.ry()-t[i].center().ry())/d, p2.ry() - h*(p1.rx()-t[i].center().rx())/d);
 
                     line.setP2(o);
