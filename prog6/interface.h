@@ -2,14 +2,14 @@
 #define TINTERFACE_H
 
 #include <QWidget>
-#include<QPushButton>
-#include<QFileDialog>
-#include<QFile>
-#include<QSpinBox>
-#include<QLabel>
-#include<QMessageBox>
-#include<QTextStream>
-#include<QDebug>
+#include <QPushButton>
+#include <QFileDialog>
+#include <QFile>
+#include <QSpinBox>
+#include <QLabel>
+#include <QMessageBox>
+#include <QTextStream>
+#include <QDebug>
 #include "canvas.h"
 
 class TInterface: public QWidget
@@ -17,8 +17,6 @@ class TInterface: public QWidget
     Q_OBJECT
     TCanvas * canvas;
     TGraph * g;
-    QLabel * lb_size;
-    QSpinBox * size_;
     QLabel * lb_matrix;
     QPushButton * btn_matrix;
     QPushButton * btn_show;
