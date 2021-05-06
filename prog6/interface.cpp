@@ -23,6 +23,7 @@ TInterface::TInterface(QWidget * parent) : QWidget(parent)
 
 TInterface::~TInterface()
 {
+    delete g;
     delete lb_matrix;
     delete btn_matrix;
     delete btn_show;
@@ -33,8 +34,6 @@ void TInterface::closeEvent(QCloseEvent * event)
 {
     if(canvas != nullptr)
     {
-        disconnect(canvas, SIGNAL(closing()),this,SLOT(CloseCanvas()));
-        disconnect(this,SIGNAL(ChangeGraph(TGraph *)), canvas, SLOT(SetGraph(TGraph *)));
         canvas->close();
     }
     event->accept();
@@ -115,7 +114,7 @@ void TInterface::OpenFile()
                     }
                 }
 
-                if(!data.atEnd())
+                if(!data.atEnd() && flag == true)
                 {
                     flag = false;
                     QMessageBox::warning(this, "Неправильный формат файла", "Матрица смежности должна быть квадратной!");
@@ -167,11 +166,12 @@ void TInterface::OpenCanvas()
         else
             QMessageBox::warning(this, "Сообщение", "Файл не выбран");
     }
-
 }
 
 void TInterface::CloseCanvas()
 {
-    disconnect(canvas, SIGNAL(closing()),this,SLOT(CloseCanvas()));
+    disconnect(canvas, SIGNAL(closing()), this, SLOT(CloseCanvas()));
+    disconnect(this, SIGNAL(ChangeGraph(TGraph *)), canvas, SLOT(ChangeGraph(TGraph *)));
+    delete canvas;
     canvas = nullptr;
 }
