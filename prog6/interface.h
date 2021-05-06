@@ -9,7 +9,6 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QTextStream>
-#include <QDebug>
 #include "canvas.h"
 #include "graph.h"
 

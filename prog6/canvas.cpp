@@ -1,7 +1,6 @@
 #include "canvas.h"
 #include <QPainter>
 #include <math.h>
-#include <QVector>
 
 TCanvas::TCanvas(TGraph *f, QWidget *parent) : QWidget(parent)
 {
