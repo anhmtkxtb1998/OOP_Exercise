@@ -10,17 +10,17 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include "canvas.h"
-#include "derivegraph.h"
+#include "stategraph.h"
 
 class TInterface: public QWidget
 {
     Q_OBJECT
     TCanvas * canvas;
-    TDerivesample *g;
+    TStateGraph *g;
     QLabel * lb_matrix;
     QPushButton * btn_matrix;
-    QLabel * lb_activate;
-    QSpinBox * sp_activate;
+    QLabel * lb_activeVertex;
+    QSpinBox * sp_activeVertex;
     QPushButton * btn_show;
 
 public:
@@ -30,14 +30,13 @@ protected:
     void closeEvent(QCloseEvent *);
 private slots:
     void OpenCanvas();
-//    void OpenFile();
     void OpenFileStateMatrix();
-    void ChangeActiveEdge(int);
-    void SetActivateEdge(int);
+    void ChangeActiveVertex(int);
+    void SetActiveVertex(int);
 public slots:
     void CloseCanvas();
 signals:
-    void ChangeGraph(TDerivesample);
+    void ChangeGraph(TStateGraph);
 };
 
 #endif // TINTERFACE_H

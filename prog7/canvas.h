@@ -6,7 +6,7 @@
 #include<QComboBox>
 #include<QLabel>
 #include<QPushButton>
-#include "derivegraph.h"
+#include "stategraph.h"
 
 class TCanvas : public QWidget
 {
@@ -14,13 +14,13 @@ class TCanvas : public QWidget
     QLabel *lb_state;
     QComboBox * cb_state;
     QPushButton * btn_choose;
-    TDerivesample *g;
+    TStateGraph *g;
 public:
-    TCanvas(TDerivesample, QWidget *parent = 0);
+    TCanvas(TStateGraph, QWidget *parent = 0);
     ~TCanvas();
-    void AddItemComboBox(int);
+    void AddStatesToChoose(int);
 public slots:
-    void ChangeGraph(TDerivesample);
+    void ChangeGraph(TStateGraph);
 protected:
     void paintEvent(QPaintEvent *);
     void closeEvent(QCloseEvent*);
@@ -28,7 +28,7 @@ private slots:
     void ChangeState();
 signals:
     void closing();
-    void ChangeActivateEdge(int);
+    void ChangeActiveVertex(int);
 };
 
 #endif // TCANVAS_H

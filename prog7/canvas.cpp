@@ -2,16 +2,16 @@
 #include <QPainter>
 #include <math.h>
 
-TCanvas::TCanvas(TDerivesample f, QWidget *parent) : QWidget(parent)
+TCanvas::TCanvas(TStateGraph f, QWidget *parent) : QWidget(parent)
 {
-    g = new TDerivesample(f);
+    g = new TStateGraph(f);
     setFixedSize( 600, 600);
     lb_state = new QLabel(this);
     lb_state->setText("Выбор события");
     lb_state->setGeometry(10, 20, 150, 40);
     cb_state = new QComboBox(this);
     cb_state->setGeometry( 180, 20, 200, 40);
-    this->AddItemComboBox(g->GetActivate());
+    this->AddStatesToChoose(g->getActiveVertex());
     btn_choose = new QPushButton(this);
     btn_choose->setText("Применить событие");
     btn_choose->setGeometry(400,20,180,40);
@@ -26,7 +26,7 @@ TCanvas::~TCanvas()
     delete cb_state;
     delete btn_choose;
 }
-void TCanvas::AddItemComboBox(int activate)
+void TCanvas::AddStatesToChoose(int activate)
 {
    cb_state->clear();
    for(int i = 0;i < g->getMatrix().getY();i ++)
@@ -137,11 +137,11 @@ void TCanvas::paintEvent(QPaintEvent*)
     }
 
     delete [] t;
-    QRectF point(cw+cr*sin(g->GetActivate()*a)-rad, ch-cr*cos( g->GetActivate()*a)-rad, 2*rad, 2*rad);
+    QRectF point(cw+cr*sin(g->getActiveVertex()*a)-rad, ch-cr*cos( g->getActiveVertex()*a)-rad, 2*rad, 2*rad);
     p.setPen(QPen(Qt::black));
     p.setBrush(QBrush(Qt::yellow));
     p.drawEllipse(point);
-    p.drawText(point, QString().setNum(g->GetActivate()+1), QTextOption(Qt::AlignCenter));
+    p.drawText(point, QString().setNum(g->getActiveVertex()+1), QTextOption(Qt::AlignCenter));
     p.end();
 }
 
@@ -151,22 +151,23 @@ void TCanvas::closeEvent(QCloseEvent* event)
     event->accept();
 }
 
-void TCanvas::ChangeGraph(TDerivesample t)
+void TCanvas::ChangeGraph(TStateGraph t)
 {
     *g = t;
-    AddItemComboBox(g->GetActivate());
+    AddStatesToChoose(g->getActiveVertex());
     this->repaint();
 }
+
 void TCanvas::ChangeState()
 {
     if(cb_state->currentIndex() > -1)
     {
         int event = cb_state->itemData(cb_state->currentIndex()).toInt();
-        g->newEvents(event);
+        g->newEvent(event);
         update();
         this->repaint();
-        AddItemComboBox(g->GetActivate());
-        emit ChangeActivateEdge(g->GetActivate());
+        AddStatesToChoose(g->getActiveVertex());
+        emit ChangeActiveVertex(g->getActiveVertex());
     }
 }
 

@@ -1,20 +1,22 @@
 #include "interface.h"
+#include <QDebug>
 
 TInterface::TInterface(QWidget * parent) : QWidget(parent)
 {
-    setWindowTitle("Работа №6");
+    setWindowTitle("Работа №7");
     setFixedSize(320, 160);
     canvas = nullptr;
     g = nullptr;
 
     lb_matrix = new QLabel(this);
-    lb_activate = new QLabel(this);
-    lb_activate->setText("Активной вершины: ");
-    lb_activate->setGeometry(10, 20, 150, 30);
-    sp_activate = new QSpinBox(this);
-    sp_activate->setMinimum(1);
-    sp_activate->setGeometry(170, 20, 140,30);
-    lb_matrix->setText("Матрица смежности:");
+    lb_activeVertex = new QLabel(this);
+    lb_activeVertex->setText("Активная вершины: ");
+    lb_activeVertex->setGeometry(10, 20, 150, 30);
+    sp_activeVertex = new QSpinBox(this);
+    sp_activeVertex->setMinimum(1);
+    sp_activeVertex->setGeometry(170, 20, 140,30);
+    sp_activeVertex->setDisabled(true);
+    lb_matrix->setText("Матрица состояний:");
     lb_matrix->setGeometry(10, 70, 150, 30);
     btn_matrix = new QPushButton(this);
     btn_matrix->setText("Выбрать файл");
@@ -25,8 +27,7 @@ TInterface::TInterface(QWidget * parent) : QWidget(parent)
 
     connect(btn_matrix, SIGNAL(pressed()), this, SLOT(OpenFileStateMatrix()));
     connect(btn_show, SIGNAL(pressed()), this, SLOT(OpenCanvas()));
-    connect(sp_activate, SIGNAL(valueChanged(int)), this, SLOT(ChangeActiveEdge(int)));
-
+    connect(sp_activeVertex, SIGNAL(valueChanged(int)), this, SLOT(ChangeActiveVertex(int)));
 }
 
 TInterface::~TInterface()
@@ -60,8 +61,10 @@ void TInterface::OpenFileStateMatrix()
         QTextStream data(&file);
         bool flag = true;
         QVector< QVector<qint16> > matrix;
-        int activate = sp_activate->value();
+        int activeVertex = sp_activeVertex->value();
         int num_state = 0;
+        QIntValidator v(this);
+        int pos = 0;
         if(!data.atEnd())
         {
             QString line = data.readLine();
@@ -69,57 +72,92 @@ void TInterface::OpenFileStateMatrix()
             QStringList NumList = line.split(" ");
             num_state = NumList.size();
             QVector<qint16> tmp;
-            for(int i = 0;i < NumList.size();i++)
-                 tmp.push_back(NumList[i].toInt());
-            matrix.push_back(tmp);
-            while(!data.atEnd())
+            for(int i = 0;i < num_state;i++)
             {
-                QString line = data.readLine();
-                line = line.trimmed();
-                QStringList NumList = line.split(" ");
-                if(NumList.size() == num_state)
-                {
-                    QVector<qint16> tmp;
-                    for(int i = 0;i < NumList.size();i++)
-                        tmp.push_back(NumList[i].toInt());
-                    matrix.push_back(tmp);
-                }
-                else
+                if(!v.validate(NumList[i], pos))
                 {
                     flag = false;
-                    QMessageBox::warning(this,"Сообщение", "Число состояний каждой вершины должны одинаковым");
+                    QMessageBox::warning(this, "Неправильный формат файла", "Элементами матрицы состояния могут быть только целые числа");
                     break;
                 }
+                else
+                    tmp.push_back(NumList[i].toInt());
             }
-             if (flag == true && matrix.size() > 0)
-              {
-                  TMatrix tmp(matrix.size(), matrix[0].size(), matrix);
-                  if(tmp.Is_State_Matrix())
-                  {
-                    sp_activate->setMaximum(matrix.size());
-                    if(g == nullptr)
-                      {
-                         g = new TDerivesample(tmp,activate -1);
-                      }
-                    else
-                      {
-                         g->SetActivate(activate -1);
-                         g->setCount(matrix.size());
-                         g->setMatrix(tmp);
-                      }
-                     emit ChangeGraph(*g);
-                  }
-                  else
-                    QMessageBox::warning(this, "Сообщение", "Матрица состояния не правильная!!");
+            matrix.push_back(tmp);
 
-              }
+            if(flag == true)
+            {
+                while(!data.atEnd())
+                {
+                    QString line = data.readLine();
+                    line = line.trimmed();
+                    QStringList NumList = line.split(" ");
+                    if(NumList.size() == num_state)
+                    {
+                        QVector<qint16> tmp;
+                        for(int i = 0;i < num_state;i++)
+                        {
+                            if(!v.validate(NumList[i], pos))
+                            {
+                                flag = false;
+                                QMessageBox::warning(this, "Неправильный формат файла", "Элементами матрицы состояния могут быть только целые числа");
+                                break;
+                            }
+                            else
+                                tmp.push_back(NumList[i].toInt());
+                        }
+                        if(flag == false)
+                        {
+                            break;
+                        }
+                        matrix.push_back(tmp);
+                    }
+                    else
+                    {
+                        flag = false;
+                        QMessageBox::warning(this,"Неправильный формат файла", "Число состояний каждой вершины должно быть одинаковым");
+                        break;
+                    }
+                }
+                if (flag == true && matrix.size() > 0)
+                {
+                    TMatrix tmp_matrix(matrix.size(), num_state, matrix);
+                    //                  qDebug() << tmp.getX();
+                    //                  qDebug() << tmp.getY();
+                    //                  for(int i = 0; i < tmp.getX();i++)
+                    //                  {
+                    //                      for(int j = 0;j < tmp.getY();j ++)
+                    //                          qDebug() << tmp.at(i, j);
+                    //                  }
+
+
+                    if(tmp_matrix.Is_State_Matrix())
+                    {
+                        sp_activeVertex->setMaximum(matrix.size());
+                        sp_activeVertex->setEnabled(true);
+                        if(g == nullptr)
+                        {
+                            g = new TStateGraph(tmp_matrix,activeVertex -1);
+                        }
+                        else
+                        {
+                            g->setActiveVertex(activeVertex -1);
+                            g->setCount(matrix.size());
+                            g->setMatrix(tmp_matrix);
+                        }
+                        emit ChangeGraph(*g);
+                    }
+                    else
+                        QMessageBox::warning(this, "Неправильный формат файла", "Файл не содержит матрицу состояния");
+                }
+            }
         }
-         else
-         {
-             QMessageBox::warning(this, "Сообщение", "Файл пустой");
-         }
-         file.close();
-     }
+        else
+        {
+            QMessageBox::warning(this, "Сообщение", "Файл пустой");
+        }
+        file.close();
+    }
 }
 
 void TInterface::OpenCanvas()
@@ -130,9 +168,9 @@ void TInterface::OpenCanvas()
         {
             canvas = new TCanvas(*g);
             connect(canvas, SIGNAL(closing()),this,SLOT(CloseCanvas()));
-            connect(this,SIGNAL(ChangeGraph(TDerivesample)), canvas, SLOT(ChangeGraph(TDerivesample)));
-            connect(canvas, SIGNAL(ChangeActivateEdge(int)), this, SLOT(SetActivateEdge(int)));
-            canvas->setWindowTitle("Ориентированный граф");
+            connect(this,SIGNAL(ChangeGraph(TStateGraph)), canvas, SLOT(ChangeGraph(TStateGraph)));
+            connect(canvas, SIGNAL(ChangeActiveVertex(int)), this, SLOT(SetActiveVertex(int)));
+            canvas->setWindowTitle("Граф состояний");
             canvas->show();
         }
         else
@@ -143,19 +181,21 @@ void TInterface::OpenCanvas()
 void TInterface::CloseCanvas()
 {
     disconnect(canvas, SIGNAL(closing()), this, SLOT(CloseCanvas()));
-    disconnect(this, SIGNAL(ChangeGraph(TDerivesample)), canvas, SLOT(ChangeGraph(TDerivesample)));
-    disconnect(canvas, SIGNAL(ChangeActivateEdge(int)), this, SLOT(SetActivateEdge(int)));
+    disconnect(this, SIGNAL(ChangeGraph(TStateGraph)), canvas, SLOT(ChangeGraph(TStateGraph)));
+    disconnect(canvas, SIGNAL(ChangeActiveVertex(int)), this, SLOT(SetActiveVertex(int)));
     canvas = nullptr;
 }
-void TInterface::ChangeActiveEdge(int a)
+
+void TInterface::ChangeActiveVertex(int a)
 {
     if(g != nullptr)
     {
-        g->SetActivate(a - 1);
+        g->setActiveVertex(a - 1);
         emit ChangeGraph(*g);
     }
 }
-void TInterface::SetActivateEdge(int activate)
+
+void TInterface::SetActiveVertex(int activate)
 {
-    sp_activate->setValue(activate + 1);
+    sp_activeVertex->setValue(activate + 1);
 }
