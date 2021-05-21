@@ -3,9 +3,9 @@
 
 #include <QWidget>
 #include <QCloseEvent>
-#include<QComboBox>
-#include<QLabel>
-#include<QPushButton>
+#include <QComboBox>
+#include <QLabel>
+#include <QPushButton>
 #include "stategraph.h"
 
 class TCanvas : public QWidget
