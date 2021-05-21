@@ -17,18 +17,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     canvas.cpp \
-    derivegraph.cpp \
     graph.cpp \
     interface.cpp \
     main.cpp \
-    matrix.cpp
+    matrix.cpp \
+    stategraph.cpp
 
 HEADERS += \
     canvas.h \
-    derivegraph.h \
     graph.h \
     interface.h \
-    matrix.h
+    matrix.h \
+    stategraph.h
 
 FORMS +=
 

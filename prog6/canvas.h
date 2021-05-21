@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QCloseEvent>
+#include <QPainter>
 #include "graph.h"
 
 class TCanvas : public QWidget

@@ -5,7 +5,6 @@
 #include <QPushButton>
 #include <QFileDialog>
 #include <QFile>
-#include <QSpinBox>
 #include <QLabel>
 #include <QMessageBox>
 #include <QTextStream>

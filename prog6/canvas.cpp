@@ -1,10 +1,9 @@
 #include "canvas.h"
-#include <QPainter>
 #include <math.h>
 
-TCanvas::TCanvas(TGraph f, QWidget *parent) : QWidget(parent)
+TCanvas::TCanvas(TGraph t, QWidget *parent) : QWidget(parent)
 {
-    g = new TGraph(f);
+    g = new TGraph(t);
     setFixedSize(400,400);
 }
 

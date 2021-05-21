@@ -67,6 +67,7 @@ void TInterface::OpenFile()
                 {
                     flag = false;
                     QMessageBox::warning(this, "Неправильный формат файла", "Элементами матрицы смежности могут быть только символы '0' и '1'!");
+                    break;
                 }
                 else
                     tmp.push_back(NumList[i].toInt());
@@ -96,6 +97,10 @@ void TInterface::OpenFile()
                                 }
                                 else
                                     tmp.push_back(NumList[i].toInt());
+                            }
+                            if (flag == false)
+                            {
+                                break;
                             }
                             matrix.push_back(tmp);
                         }
