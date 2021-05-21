@@ -1,5 +1,4 @@
 #include "interface.h"
-#include <QDebug>
 
 TInterface::TInterface(QWidget * parent) : QWidget(parent)
 {
@@ -10,7 +9,7 @@ TInterface::TInterface(QWidget * parent) : QWidget(parent)
 
     lb_matrix = new QLabel(this);
     lb_activeVertex = new QLabel(this);
-    lb_activeVertex->setText("Активная вершины: ");
+    lb_activeVertex->setText("Активная вершина: ");
     lb_activeVertex->setGeometry(10, 20, 150, 30);
     sp_activeVertex = new QSpinBox(this);
     sp_activeVertex->setMinimum(1);
@@ -50,7 +49,7 @@ void TInterface::closeEvent(QCloseEvent * event)
 
 void TInterface::OpenFileStateMatrix()
 {
-    QString file_name = QFileDialog::getOpenFileName(this, "Выберите файл с матрицей состояния");
+    QString file_name = QFileDialog::getOpenFileName(this, "Выберите файл с матрицей состояний");
     QFile file(file_name);
     if(!file.open(QFile::ReadOnly | QFile::Text))
     {
@@ -77,7 +76,7 @@ void TInterface::OpenFileStateMatrix()
                 if(!v.validate(NumList[i], pos))
                 {
                     flag = false;
-                    QMessageBox::warning(this, "Неправильный формат файла", "Элементами матрицы состояния могут быть только целые числа");
+                    QMessageBox::warning(this, "Неправильный формат файла", "Элементами матрицы состояний могут быть только целые положительные числа");
                     break;
                 }
                 else
@@ -100,7 +99,7 @@ void TInterface::OpenFileStateMatrix()
                             if(!v.validate(NumList[i], pos))
                             {
                                 flag = false;
-                                QMessageBox::warning(this, "Неправильный формат файла", "Элементами матрицы состояния могут быть только целые числа");
+                                QMessageBox::warning(this, "Неправильный формат файла", "Элементами матрицы состояний могут быть только целые положительные числа");
                                 break;
                             }
                             else
@@ -122,17 +121,10 @@ void TInterface::OpenFileStateMatrix()
                 if (flag == true && matrix.size() > 0)
                 {
                     TMatrix tmp_matrix(matrix.size(), num_state, matrix);
-                    //                  qDebug() << tmp.getX();
-                    //                  qDebug() << tmp.getY();
-                    //                  for(int i = 0; i < tmp.getX();i++)
-                    //                  {
-                    //                      for(int j = 0;j < tmp.getY();j ++)
-                    //                          qDebug() << tmp.at(i, j);
-                    //                  }
-
 
                     if(tmp_matrix.Is_State_Matrix())
                     {
+                        sp_activeVertex->setValue(1);
                         sp_activeVertex->setMaximum(matrix.size());
                         sp_activeVertex->setEnabled(true);
                         if(g == nullptr)
@@ -141,20 +133,20 @@ void TInterface::OpenFileStateMatrix()
                         }
                         else
                         {
-                            g->setActiveVertex(activeVertex -1);
+                            g->setActiveVertex(0);
                             g->setCount(matrix.size());
                             g->setMatrix(tmp_matrix);
                         }
                         emit ChangeGraph(*g);
                     }
                     else
-                        QMessageBox::warning(this, "Неправильный формат файла", "Файл не содержит матрицу состояния");
+                        QMessageBox::warning(this, "Неправильный формат файла", "Матрица состояний содержит отрицательные числа или числа больше, чем количество вершин графа (строк матрицы)");
                 }
             }
         }
         else
         {
-            QMessageBox::warning(this, "Сообщение", "Файл пустой");
+            QMessageBox::warning(this, "Сообщение", "Пустой файл");
         }
         file.close();
     }
@@ -195,7 +187,7 @@ void TInterface::ChangeActiveVertex(int a)
     }
 }
 
-void TInterface::SetActiveVertex(int activate)
+void TInterface::SetActiveVertex(int active)
 {
-    sp_activeVertex->setValue(activate + 1);
+    sp_activeVertex->setValue(active + 1);
 }

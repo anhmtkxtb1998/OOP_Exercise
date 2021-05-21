@@ -17,7 +17,6 @@ public:
     qint16 at(int, int);
     bool Is_Adjacency_Matrix();
     bool Is_State_Matrix();
-    void ConvertStateMatrix();
 };
 
 #endif // TMATRIX_H
