@@ -6,7 +6,6 @@ class TParallelogram : public TQuadrangle
 {
 public:
     TParallelogram( double, double, double);
-
 };
 
 #endif // TPARALLELOGRAM_H

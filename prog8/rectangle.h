@@ -6,7 +6,6 @@ class TRectangle : public TParallelogram
 {
 public:
     TRectangle(double, double);
-
 };
 
 #endif // TRECTANGLE_H

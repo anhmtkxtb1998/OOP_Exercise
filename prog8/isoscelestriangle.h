@@ -6,8 +6,6 @@ class TIsoscelesTriangle: public TTriangle
 {
 public:
     TIsoscelesTriangle(double, double);
-
-
 };
 
 #endif // TEQUILATERALTRIANGLE_H
