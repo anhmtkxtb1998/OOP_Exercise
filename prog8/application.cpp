@@ -74,8 +74,8 @@ int TApplication::exec()
                 double a, b;
                 do
                 {
-                    std::cout<<"\naxis1 = "; cin >> a;
-                    std::cout<<"\naxis2 = "; cin >> b;
+                    std::cout<<"\nradius1 = "; cin >> a;
+                    std::cout<<"\nradius2 = "; cin >> b;
                     figure = TEllipse::create(a, b);
                     if(figure == NULL)
                         std::cout <<"\nIncorrect input for ellipse!!!" << std::endl;
@@ -90,7 +90,7 @@ int TApplication::exec()
                 double a;
                 do
                 {
-                    std::cout<<"\naxis = "; cin >> a;
+                    std::cout<<"\nradius = "; cin >> a;
                     figure = TCircle::create(a);
                     if(figure == NULL)
                         std::cout <<"\nIncorrect input for circle!!!" << std::endl;
