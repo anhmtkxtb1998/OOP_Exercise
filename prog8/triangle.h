@@ -12,7 +12,6 @@ public:
     TTriangle(double, double, double);
     double Area();
     double Perimeter();
-
 };
 
 #endif // TTRIANGLE_H

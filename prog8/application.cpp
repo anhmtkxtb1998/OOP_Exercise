@@ -219,11 +219,12 @@ int TApplication::exec()
                 break;
 
             default:
-                std::cout << "No command for this input. Enter number from 0 to 10" << std::endl;
+                std::cout << "\nNo command for this input. Enter number from 0 to 10" << std::endl;
                 break;
             }
 
         delete figure;
+        std::cout << "\n" << std::endl;
 
     }while(choose != 0);
     return 0;

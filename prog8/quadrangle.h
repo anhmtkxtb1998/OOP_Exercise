@@ -15,7 +15,6 @@ public:
     ~TQuadrangle();
     double Area() ;
     double Perimeter();
-
 };
 
 #endif // TQUADRANGLE_H

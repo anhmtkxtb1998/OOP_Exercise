@@ -13,7 +13,6 @@ public:
     TEllipse(double, double);
     double Area();
     double Perimeter();
-
 };
 
 #endif // TELLIPSE_H

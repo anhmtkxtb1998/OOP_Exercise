@@ -14,5 +14,5 @@ double TEllipse::Area()
 }
 double TEllipse::Perimeter()
 {
-    return PI *(3*(Ra+Rb)- sqrt((3 * Ra + Rb) * (Ra + 3 * Rb)));
+    return 4 * (PI * Ra * Rb + (Ra - Rb) * (Ra - Rb))/(Ra + Rb);
 }

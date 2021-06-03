@@ -3,7 +3,6 @@
 #include <iostream>
 TQuadrangle::TQuadrangle(double _a, double _b, double _c, double _angle1, double _angle2)
 {
-
     d = _b;
     delete t1;
     delete t2;
@@ -18,7 +17,6 @@ TQuadrangle::~TQuadrangle()
 }
 double TQuadrangle::Area()
 {
-
     return (t1->Area() + t2->Area());
 }
 double TQuadrangle::Perimeter()

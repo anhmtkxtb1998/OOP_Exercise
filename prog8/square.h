@@ -7,8 +7,6 @@ class TSquare : public TRectangle, public TRhombus
 {
 public:
     TSquare(double);
-
-
 };
 
 #endif // TSQUARE_H

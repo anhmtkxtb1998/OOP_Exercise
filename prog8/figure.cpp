@@ -1,5 +1,4 @@
 #include "figure.h"
-using namespace std;
 
 TFigure::TFigure()
 {
@@ -17,9 +16,9 @@ double TFigure::Perimeter()
 {
     return 0;
 }
-void TFigure::output(ostream &outDev)
+void TFigure::output(std::ostream &outDev)
 {
- outDev << "\n" << className << ": ";
- outDev << " \tArea: " << Area();
- outDev <<"\tPerimeter: " << Perimeter() << endl;
+    outDev << "\n" << className << ": ";
+    outDev << " \tArea: " << Area();
+    outDev <<"\tPerimeter: " << Perimeter() << std::endl;
 }
