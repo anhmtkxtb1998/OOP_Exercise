@@ -4,11 +4,8 @@
 
 class TRhombus : public TParallelogram
 {
-protected:
-    TRhombus(double, double);
 public:
-    static TRhombus * create(double, double);
-
+    TRhombus(double, double);
 };
 
 #endif // TRHOMBUS_H

@@ -7,13 +7,12 @@
 class TQuadrangle : public TFigure
 {
 protected:
-//    double a, b, c, angle1, angle2;
     double b;
     TTriangle * t1 = NULL;
     TTriangle * t2 = NULL;
-    TQuadrangle(double, double, double, double, double);
 public:
-    static TQuadrangle * create(double, double, double, double, double);
+    TQuadrangle(double, double, double, double, double);
+    ~TQuadrangle();
     double Area() ;
     double Perimeter();
 

@@ -5,9 +5,9 @@
 
 class TSquare : public TRectangle, public TRhombus
 {
-    TSquare(double);
 public:
-    static TSquare * create(double);
+    TSquare(double);
+
 
 };
 

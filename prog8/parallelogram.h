@@ -4,10 +4,8 @@
 
 class TParallelogram : public TQuadrangle
 {
-protected:
-    TParallelogram( double, double, double);
 public:
-    static TParallelogram * create(double, double, double);
+    TParallelogram( double, double, double);
 
 };
 

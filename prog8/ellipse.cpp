@@ -7,12 +7,7 @@ TEllipse::TEllipse(double a, double b)
     Rb = b;
     className = "Ellipse";
 }
-TEllipse * TEllipse::create(double a, double b)
-{
-    if( a <= 0 || b <= 0)
-        return NULL;
-    return(new TEllipse(a, b));
-}
+
 double TEllipse::Area()
 {
     return PI * Ra * Rb;

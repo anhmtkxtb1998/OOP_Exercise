@@ -4,10 +4,8 @@
 
 class TRectangle : public TParallelogram
 {
-protected:
-    TRectangle(double, double);
 public:
-    static TRectangle * create(double, double);
+    TRectangle(double, double);
 
 };
 

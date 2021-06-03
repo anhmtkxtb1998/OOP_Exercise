@@ -5,10 +5,8 @@
 
 class TEquilateralTriagle : public TIsoscelesTriangle
 {
-    TEquilateralTriagle(double);
 public:
-    static TEquilateralTriagle * create(double);
-
+    TEquilateralTriagle(double);
 };
 
 #endif // TEQUILATERALTRIAGLE_H

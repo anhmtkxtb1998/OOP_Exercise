@@ -4,10 +4,9 @@
 
 class TIsoscelesTriangle: public TTriangle
 {
-protected:
-    TIsoscelesTriangle(double, double);
 public:
-    static TIsoscelesTriangle * create(double, double);
+    TIsoscelesTriangle(double, double);
+
 
 };
 

@@ -9,9 +9,8 @@ class TEllipse : public TFigure
 {
 protected:
     double Ra, Rb;
-    TEllipse(double, double);
 public:
-    static TEllipse * create(double, double);
+    TEllipse(double, double);
     double Area();
     double Perimeter();
 

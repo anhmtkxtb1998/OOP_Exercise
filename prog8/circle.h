@@ -4,9 +4,8 @@
 
 class TCircle : public TEllipse
 {
-     TCircle(double);
 public:
-     static TCircle * create(double);
+     TCircle(double);
 };
 
 #endif // TCIRCLE_H
