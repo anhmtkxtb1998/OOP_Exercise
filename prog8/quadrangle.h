@@ -7,7 +7,7 @@
 class TQuadrangle : public TFigure
 {
 protected:
-    double b;
+    double d;
     TTriangle * t1 = NULL;
     TTriangle * t2 = NULL;
 public:

@@ -10,7 +10,6 @@ protected:
     double angle;
 public:
     TTriangle(double, double, double);
-    static TTriangle * create(double, double, double);
     double Area();
     double Perimeter();
 

@@ -26,11 +26,14 @@ int TApplication::exec()
                 double a, b, angle;
                 do
                 {
-                    std::cout<<"\nside1 = "; cin >> a;
-                    std::cout<<"\nside2 = "; cin >> b;
-                    std::cout<<"\nangle between sides = "; cin >> angle;
-                    figure = TTriangle::create(a, b, angle);
-                    if(( a <=0)||( b <=0)||angle <= 0 || angle >= 180)
+                    std::cout<<"\nside1 = ";
+                    std::cin >> a;
+                    std::cout<<"\nside2 = ";
+                    std::cin >> b;
+                    std::cout<<"\nangle between sides = ";
+                    std::cin >> angle;
+
+                    if( a < 0 || b < 0 ||angle < 0 || angle > 180)
                         std::cout <<"\nIncorrect input for triangle!!!" << std::endl;
                     else
                         figure = new TTriangle(a, b, angle);
@@ -38,17 +41,19 @@ int TApplication::exec()
                 while(figure == NULL);
                 figure->output(std::cout);
             }
-            break;
+                break;
 
             case 2:
             {
                 double a, angle;
                 do
                 {
-                    std::cout<<"\nside = "; cin >> a;
-                    std::cout<<"\nangle between sides = "; cin >> angle;
+                    std::cout<<"\nside = ";
+                    std::cin >> a;
+                    std::cout<<"\napex angle = ";
+                    std::cin >> angle;
 
-                    if(a <= 0 || angle <= 0 || angle >= 180)
+                    if(a < 0 || angle < 0 || angle > 180)
                         std::cout <<"\nIncorrect input for isosceles triangle!!!" << std::endl;
                     else
                         figure = new TIsoscelesTriangle(a, angle);
@@ -56,15 +61,16 @@ int TApplication::exec()
                 while(figure == NULL);
                 figure->output(std::cout);
             }
-            break;
+                break;
 
             case 3:
             {
                 double a;
                 do
                 {
-                    std::cout<<"\nside = "; cin >> a;
-                    if(a <= 0)
+                    std::cout<<"\nside = ";
+                    std::cin >> a;
+                    if(a < 0)
                         std::cout <<"\nIncorrect input for equilateral triangle!!!" << std::endl;
                     else
                         figure = new TEquilateralTriagle(a);
@@ -72,17 +78,19 @@ int TApplication::exec()
                 while(figure == NULL);
                 figure->output(std::cout);
             }
-            break;
+                break;
 
             case 4:
             {
                 double a, b;
                 do
                 {
-                    std::cout<<"\nradius1 = "; cin >> a;
-                    std::cout<<"\nradius2 = "; cin >> b;
+                    std::cout<<"\nsemiaxis1 = ";
+                    std::cin >> a;
+                    std::cout<<"\nsemiaxis2 = ";
+                    std::cin >> b;
 
-                    if(a <= 0|| b <= 0)
+                    if(a < 0|| b < 0)
                         std::cout <<"\nIncorrect input for ellipse!!!" << std::endl;
                     else
                         figure = new TEllipse(a, b);
@@ -90,15 +98,16 @@ int TApplication::exec()
                 while(figure == NULL);
                 figure->output(std::cout);
             }
-            break;
+                break;
 
             case 5:
             {
                 double a;
                 do
                 {
-                    std::cout<<"\nradius = "; cin >> a;
-                    if(a <= 0)
+                    std::cout<<"\nradius = ";
+                    std::cin >> a;
+                    if(a < 0)
                         std::cout <<"\nIncorrect input for circle!!!" << std::endl;
                     else
                         figure = new TCircle(a);
@@ -106,19 +115,24 @@ int TApplication::exec()
                 while(figure == NULL);
                 figure->output(std::cout);
             }
-            break;
+                break;
 
             case 6:
             {
                 double a, b, c, angle1, angle2;
                 do
                 {
-                    std::cout<<"\nside1 = "; cin >> a;
-                    std::cout<<"\ndiagonal = "; cin >> b;
-                    std::cout<<"\nside2 = "; cin >> c;
-                    std::cout<<"\nangle between side1 and diagonal = "; cin >> angle1;
-                    std::cout<<"\nangle between side2 and diagonal = "; cin >> angle2;
-                    if(a <= 0|| b <= 0|| c <=0 || angle1 <= 0 || angle1 >= 180 || angle2 <= 0 || angle2 >= 180)
+                    std::cout<<"\nside1 = ";
+                    std::cin >> a;
+                    std::cout<<"\ndiagonal = ";
+                    std::cin >> b;
+                    std::cout<<"\nside2 = ";
+                    std::cin >> c;
+                    std::cout<<"\nangle between side1 and diagonal = ";
+                    std::cin >> angle1;
+                    std::cout<<"\nangle between side2 and diagonal = ";
+                    std::cin >> angle2;
+                    if(a < 0|| b < 0|| c < 0 || angle1 < 0 || angle1 > 180 || angle2 < 0 || angle2 > 180)
                         std::cout <<"\nIncorrect input for Quadrangle!!!" << std::endl;
                     else
                         figure = new TQuadrangle(a, b, c, angle1, angle2);
@@ -126,16 +140,20 @@ int TApplication::exec()
                 while(figure == NULL);
                 figure->output(std::cout);
             }
-            break;
+                break;
+
             case 7:
             {
                 double a, b, angle;
                 do
                 {
-                    std::cout<<"\nside1 = "; cin >> a;
-                    std::cout<<"\nside2 = "; cin >> b;
-                    std::cout<<"\nangle between side1 and diagonal = "; cin >> angle;
-                    if(a<= 0 || b <= 0 || angle <= 0 || angle >= 180)
+                    std::cout<<"\nside = ";
+                    std::cin >> a;
+                    std::cout<<"\ndiagonal = ";
+                    std::cin >> b;
+                    std::cout<<"\nangle between side and diagonal = ";
+                    std::cin >> angle;
+                    if(a < 0 || b < 0 || angle < 0 || angle > 180)
                         std::cout <<"\nIncorrect input for Parallelogram!!!" << std::endl;
                     else
                         figure = new TParallelogram(a, b, angle);
@@ -143,16 +161,18 @@ int TApplication::exec()
                 while(figure == NULL);
                 figure->output(std::cout);
             }
-            break;
+                break;
 
             case 8:
             {
                 double a, angle;
                 do
                 {
-                    std::cout<<"\nside = "; cin >> a;
-                    std::cout<<"\nangle between side and diagonal = "; cin >> angle;
-                    if(a <= 0|| angle <=0 || angle >= 90)
+                    std::cout<<"\nside = ";
+                    std::cin >> a;
+                    std::cout<<"\nangle between sides = ";
+                    std::cin >> angle;
+                    if(a < 0|| angle < 0 || angle > 180)
                         std::cout <<"\nIncorrect input for rhombus!!!" << std::endl;
                     else
                         figure = new TRhombus(a, angle);
@@ -160,32 +180,35 @@ int TApplication::exec()
                 while(figure == NULL);
                 figure->output(std::cout);
             }
-            break;
+                break;
 
             case 9:
             {
                 double a, b;
                 do
                 {
-                    std::cout<<"\nside = "; cin >> a;
-                    std::cout<<"\ndiagonal = "; cin >> b;
-                    if(a <= 0 || b <= 0 || a >= b)
+                    std::cout<<"\nside1 = ";
+                    std::cin >> a;
+                    std::cout<<"\nside2 = ";
+                    std::cin >> b;
+                    if(a < 0 || b < 0)
                         std::cout <<"\nIncorrect input for rectangle!!!" << std::endl;
                     else
-                        figure = new TRectangle( a, b);
+                        figure = new TRectangle(a, b);
                 }
                 while(figure == NULL);
                 figure->output(std::cout);
             }
-            break;
+                break;
 
             case 10:
             {
                 double a;
                 do
                 {
-                    std::cout<<"\nside = "; cin >> a;
-                    if(a <= 0)
+                    std::cout<<"\nside = ";
+                    std::cin >> a;
+                    if(a < 0)
                         std::cout <<"\nIncorrect input for square!!!" << std::endl;
                     else
                     figure = (TRectangle*)(new TSquare(a));
@@ -193,9 +216,10 @@ int TApplication::exec()
                 while(figure == NULL);
                 figure->output(std::cout);
             }
-            break;
+                break;
 
             default:
+                std::cout << "No command for this input. Enter number from 0 to 10" << std::endl;
                 break;
             }
 

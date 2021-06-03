@@ -4,7 +4,7 @@
 TQuadrangle::TQuadrangle(double _a, double _b, double _c, double _angle1, double _angle2)
 {
 
-    b = _b;
+    d = _b;
     delete t1;
     delete t2;
     t1 = new TTriangle(_a, _b, _angle1);
@@ -23,5 +23,5 @@ double TQuadrangle::Area()
 }
 double TQuadrangle::Perimeter()
 {
-    return (t1->Perimeter() + t2->Perimeter() - 2 * b);
+    return (t1->Perimeter() + t2->Perimeter() - 2 * d);
 }
