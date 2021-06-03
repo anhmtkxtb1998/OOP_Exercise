@@ -8,8 +8,8 @@ class TTriangle : public TFigure
 protected:
     double a, b;
     double angle;
-    TTriangle(double, double, double);
 public:
+    TTriangle(double, double, double);
     static TTriangle * create(double, double, double);
     double Area();
     double Perimeter();

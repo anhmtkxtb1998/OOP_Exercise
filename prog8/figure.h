@@ -8,6 +8,7 @@ protected:
     string className;
 public:
     TFigure();
+    virtual ~TFigure();
     virtual double Area() ;
     virtual double Perimeter();
     void output(ostream&);
