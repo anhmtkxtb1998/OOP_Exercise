@@ -1,4 +1,5 @@
 #include "figure.h"
+using namespace std;
 
 TFigure::TFigure()
 {

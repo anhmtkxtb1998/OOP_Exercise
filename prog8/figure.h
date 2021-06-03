@@ -1,17 +1,18 @@
 #ifndef TFIGURE_H
 #define TFIGURE_H
-#include<iostream>
-using namespace std;
+#include <iostream>
+#include <string>
+
 class TFigure
 {
 protected:
-    string className;
+    std::string className;
 public:
     TFigure();
     virtual ~TFigure();
     virtual double Area() ;
     virtual double Perimeter();
-    void output(ostream&);
+    void output(std::ostream&);
 };
 
 #endif // TFIGURE_H
