@@ -1,8 +1,11 @@
 #include "square.h"
 #include <math.h>
-TSquare::TSquare(double a) :  TRectangle(a, a * sqrt(2))
+#include <iostream>
+TSquare::TSquare(double a) :  TRectangle(a, a * sqrt(2)), TRhombus(a, 45)
 {
-     className = "Square";
+    TRhombus::className = "Square";
+    TRectangle::className = "Square";
+    cout << "square init" << endl;
 }
 TSquare * TSquare::create(double a)
 {

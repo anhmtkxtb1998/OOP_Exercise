@@ -2,7 +2,7 @@
 
 TCircle::TCircle(double r):TEllipse(r, r)
 {
-  className = "Окружность";
+    className = "Circle";
 }
 TCircle* TCircle::create(double r)
 {

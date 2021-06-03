@@ -2,7 +2,7 @@
 
 int main()
 {
-   TApplication a;
+    TApplication a;
 
     return a.exec();
 }

@@ -3,7 +3,7 @@
 #include "rhombus.h"
 #include "rectangle.h"
 
-class TSquare : public TRectangle
+class TSquare : public TRectangle, public TRhombus
 {
     TSquare(double);
 public:

@@ -4,6 +4,10 @@ TFigure::TFigure()
 {
 
 }
+TFigure::~TFigure()
+{
+
+}
 double TFigure::Area()
 {
     return 0;

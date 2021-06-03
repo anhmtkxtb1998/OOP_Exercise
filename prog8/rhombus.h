@@ -5,9 +5,9 @@
 class TRhombus : public TParallelogram
 {
 protected:
-     TRhombus(double, double);
+    TRhombus(double, double);
 public:
-   static TRhombus * create(double, double);
+    static TRhombus * create(double, double);
 
 };
 

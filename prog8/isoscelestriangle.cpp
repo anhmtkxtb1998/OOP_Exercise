@@ -2,7 +2,7 @@
 
 TIsoscelesTriangle::TIsoscelesTriangle(double a, double _angle): TTriangle(a , a, _angle)
 {
-     className = "Isosceles Triangle";
+    className = "Isosceles Triangle";
 }
 TIsoscelesTriangle * TIsoscelesTriangle::create(double a, double _angle)
 {

@@ -2,7 +2,7 @@
 
 TEquilateralTriagle::TEquilateralTriagle(double a): TIsoscelesTriangle(a, 60)
 {
-   className = "Equilateral Triagle";
+    className = "Equilateral Triagle";
 }
 TEquilateralTriagle * TEquilateralTriagle::create(double a)
 {

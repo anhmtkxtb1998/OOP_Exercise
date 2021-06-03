@@ -3,7 +3,9 @@
 
 TEllipse::TEllipse(double a, double b)
 {
-    Ra = a; Rb = b; className = "Ellipse";
+    Ra = a;
+    Rb = b;
+    className = "Ellipse";
 }
 TEllipse * TEllipse::create(double a, double b)
 {
