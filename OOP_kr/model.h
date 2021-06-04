@@ -5,7 +5,6 @@
 #include<QTimer>
 #include<QList>
 #include<QRandomGenerator>
-#include<QTime>
 #include<QMessageBox>
 #include "computer.h"
 #include"eventypes.h"
@@ -22,10 +21,10 @@ class TModel: public QObject
 public:
     TModel();
     ~TModel();
+private slots:
     void init();
     void paramRequest(int);
     void stateRequest(int);
-private slots:
     void tact();
 public slots:
     void recevieModelEvent(TEvent);
