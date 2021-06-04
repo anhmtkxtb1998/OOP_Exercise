@@ -26,7 +26,7 @@ void TControlwindow::ControlEvents()
    QPushButton * btn = (QPushButton *)sender();
    if (btn == ui->btn_request)
    {
-       TEvent msg(REQUEST_PROBLEM);
+       TEvent msg(NEWPROBLEM);
        msg.data.order_problem = order;
 
        QString m = "Поступила задача №";

@@ -5,12 +5,12 @@
 
 enum EEvents
 {
-    PARAMMESSAGE = 1,
+    PARAMCHANGE = 1,
     PARAMREQUEST,
-    PARAM_RESET,
+    PARAMRESET,
     STATEREQUEST,
     RESET,
-    REQUEST_PROBLEM,
+    NEWPROBLEM,
 };
 
 struct TEvent
