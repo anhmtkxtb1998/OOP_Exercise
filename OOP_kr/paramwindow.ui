@@ -35,7 +35,7 @@
     <item row="1" column="0">
      <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>Время на решения (секунды)</string>
+       <string>Время на решение (секунды)</string>
       </property>
      </widget>
     </item>
@@ -88,7 +88,7 @@
      <x>0</x>
      <y>0</y>
      <width>336</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

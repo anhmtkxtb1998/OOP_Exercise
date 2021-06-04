@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QCloseEvent>
+#include <QTimer>
 #include "eventypes.h"
 
 namespace Ui

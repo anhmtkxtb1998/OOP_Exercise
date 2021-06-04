@@ -32,7 +32,7 @@ void TParamwindow::ControlEvents()
     QPushButton * btn = (QPushButton * ) sender();
     if (btn == ui->btn1)
     {
-        TEvent msg(PARAMMESSAGE);
+        TEvent msg(PARAMCHANGE);
         msg.data.p.order = ui->s_order->value();
         msg.data.p.time_solving = ui->s_time_solving->value();
         msg.data.p.time_failure = ui->s_failure_time->value();
@@ -40,7 +40,7 @@ void TParamwindow::ControlEvents()
     }
     if (btn == ui->btn2)
     {
-        TEvent msg(PARAM_RESET);
+        TEvent msg(PARAMRESET);
         msg.data.p.order = ui->s_order->value();
         emit sendParamEvent(msg);
     }

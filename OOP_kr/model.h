@@ -18,17 +18,16 @@ class TModel: public QObject
 
     QList<TComputer*> lst_com;
     QTimer *p_timer;
+    void init();
+    void paramRequest(int);
+    void stateRequest(int);
 public:
     TModel();
     ~TModel();
 private slots:
-    void init();
-    void paramRequest(int);
-    void stateRequest(int);
     void tact();
 public slots:
     void recevieModelEvent(TEvent);
-
 signals:
     void sendModelEvent(TEvent);
 
